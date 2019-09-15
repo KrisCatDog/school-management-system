@@ -1,12 +1,12 @@
-@section('title', 'Users')
+@section('title', 'Teachers')
 @extends('layouts.app')
 
 @section('content')
 
 <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <span class="h5 mb-0"><i class="fas fa-users"></i> Users</span>
-        <a href="{{ route('user.create') }}" class="btn btn-outline-light">Create User</a>
+        <span class="h5 mb-0"><i class="fas fa-users"></i> Teachers</span>
+        <a href="{{ route('teacher.create') }}" class="btn btn-outline-primary">Create Teacher</a>
     </div>
 
     <div class="card-body">
@@ -15,23 +15,21 @@
                 <tr>
                     <th scope="col">No</th>
                     <th scope="col" style="width: 40%">Name</th>
-                    <th scope="col">Role</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
                 @php $index = 1 @endphp
-                @foreach ($users as $user)
+                @foreach ($teachers as $teacher)
                 <tr>
                     <th scope="row">{{ $index }}</th>
-                    <td>{{ $user->name }}</td>
-                    <td>{{ $user->role_id }}</td>
+                    <td>{{ $teacher->user->name }}</td>
                     <td>
-                        <a href="{{ route('user.show', ['user' => $user]) }}"
+                        <a href="{{ route('teacher.show', ['teacher' => $teacher]) }}"
                             class="btn btn-outline-info btn-sm">Detail</a>
-                        <a href="{{ route('user.edit', ['user' => $user]) }}"
+                        <a href="{{ route('teacher.edit', ['teacher' => $teacher]) }}"
                             class="btn btn-outline-success btn-sm">Edit</a>
-                        <form action="{{ route('user.destroy', ['user' => $user]) }}" method="post"
+                        <form action="{{ route('teacher.destroy', ['teacher' => $teacher]) }}" method="post"
                             class="inline custom-control-inline">
                             @csrf
                             @method('DELETE')

@@ -4,7 +4,9 @@
 @section('content')
 
 <div class="card">
-    <div class="card-header">Dashboard</div>
+    <div class="card-header">
+        <span class="h5 mb-0"><i class="fas fa-home"></i> Dashboard</span>
+    </div>
 
     <div class="card-body">
         @if (session('status'))

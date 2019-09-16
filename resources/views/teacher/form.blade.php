@@ -5,7 +5,7 @@
     <div class="col-md-10 offset-1">
 
         <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name"
-            value="{{ $student->user->name ?? old('name') }}" autocomplete="name" autofocus>
+            value="{{ $teacher->user->name ?? old('name') }}" autocomplete="name" autofocus>
 
         @error('name')
         <span class="invalid-feedback" role="alert">
@@ -21,7 +21,7 @@
     <div class="col-md-10 offset-1">
 
         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email"
-            value="{{ $student->user->email ?? old('email') }}" autocomplete="email">
+            value="{{ $teacher->user->email ?? old('email') }}" autocomplete="email">
 
         @error('email')
         <span class="invalid-feedback" role="alert">
@@ -68,7 +68,7 @@
     <div class="col-md-10 offset-1">
 
         <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address"
-            value="{{ $student->address ?? old('address') }}" autocomplete="address" autofocus>
+            value="{{ $teacher->address ?? old('address') }}" autocomplete="address" autofocus>
 
         @error('address')
         <span class="invalid-feedback" role="alert">

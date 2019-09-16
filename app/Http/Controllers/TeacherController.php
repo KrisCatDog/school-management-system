@@ -85,7 +85,7 @@ class TeacherController extends Controller
      */
     public function edit(Teacher $teacher)
     {
-        //
+        return view('teacher.edit', compact('teacher'));
     }
 
     /**
@@ -97,7 +97,32 @@ class TeacherController extends Controller
      */
     public function update(Request $request, Teacher $teacher)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,' . $teacher->user_id,
+            'password' => 'required|confirmed|min:6',
+            'address' => 'required',
+        ]);
+
+        $userData = [
+            'name' => $validatedData['name'],
+            'email' =>  $validatedData['email'],
+            'password' => bcrypt($validatedData['password']),
+            'role_id' => 3,
+        ];
+
+        $user = User::find($teacher->user_id);
+
+        $user->update($userData);
+
+        $teacherData = [
+            'user_id' => $user->id,
+            'address' => $validatedData['address'],
+        ];
+
+        $teacher->update($teacherData);
+
+        return redirect(route('teacher.index'));
     }
 
     /**
@@ -108,6 +133,8 @@ class TeacherController extends Controller
      */
     public function destroy(Teacher $teacher)
     {
-        //
+        $teacher->delete();
+
+        return redirect(route('teacher.index'));
     }
 }

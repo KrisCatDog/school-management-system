@@ -6,6 +6,7 @@ use App\Role;
 use App\Student;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class StudentController extends Controller
 {
@@ -101,7 +102,7 @@ class StudentController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:users,email',
+            'email' => 'required|email|unique:users,email,' . $student->user->id,
             'password' => 'required|confirmed|min:6',
             'address' => 'required',
         ]);

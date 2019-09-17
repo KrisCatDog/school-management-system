@@ -77,3 +77,23 @@
         @enderror
     </div>
 </div>
+
+<div class="form-group row">
+    <label for="class_id" class="col-md-10 offset-1">Class</label>
+
+    <div class="col-md-10 offset-1">
+        <select name="class_id" id="class_id" class="form-control @error('class_id') is-invalid @enderror">
+            @foreach ($classes as $class)
+            <option value="{{ $class->id }}" autocomplete="class_id" @if ($student->class_id == $class->id)
+                selected
+                @endif >{{ $class->name }}</option>
+            @endforeach
+        </select>
+
+        @error('class_id')
+        <span class=" invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+        @enderror
+    </div>
+</div>

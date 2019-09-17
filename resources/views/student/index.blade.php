@@ -10,11 +10,12 @@
     </div>
 
     <div class="card-body">
-        <table class="table table-hover table-borderless table-striped">
+        <table class="table table-hover table-striped">
             <thead>
                 <tr>
                     <th scope="col">No</th>
-                    <th scope="col" style="width: 40%">Name</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Address</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
@@ -24,6 +25,7 @@
                 <tr>
                     <th scope="row">{{ $index }}</th>
                     <td>{{ $student->user->name }}</td>
+                    <td>{{ $student->address }}</td>
                     <td>
                         <a href="{{ route('students.show', ['student' => $student]) }}"
                             class="btn btn-outline-info btn-sm">Detail</a>

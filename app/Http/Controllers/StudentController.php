@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\MyClass;
 use App\Role;
 use App\Student;
 use App\User;
@@ -19,7 +20,6 @@ class StudentController extends Controller
     {
         $students = Student::with('user')->get();
 
-
         return view('student.index', compact('students'));
     }
 
@@ -31,8 +31,9 @@ class StudentController extends Controller
     public function create()
     {
         $student = new Student();
+        $classes = MyClass::all()->sortBy('name');
 
-        return view('student.create', compact('student'));
+        return view('student.create', compact('student', 'classes'));
     }
 
     /**
@@ -88,7 +89,9 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        return view('student.edit', compact('student'));
+        $classes = MyClass::all()->sortBy('name');
+
+        return view('student.edit', compact('student', 'classes'));
     }
 
     /**

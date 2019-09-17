@@ -10,7 +10,7 @@
     </div>
 
     <div class="card-body">
-        <table class="table table-hover table-borderless table-striped">
+        <table class="table table-hover table-striped">
             <thead>
                 <tr>
                     <th scope="col">No</th>

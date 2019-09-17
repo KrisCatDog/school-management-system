@@ -18,8 +18,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('attendances/show-attendance', 'AttendanceController@showAttendance')->name('attendances.show-attendance');
     Route::get('/home', 'HomeController@index')->name('home');
-    Route::resource('user', 'UserController');
-    Route::resource('student', 'StudentController');
-    Route::resource('teacher', 'TeacherController');
+    Route::resource('users', 'UserController');
+    Route::resource('students', 'StudentController');
+    Route::resource('teachers', 'TeacherController');
+    Route::resource('attendances', 'AttendanceController');
+    // Route::post('attendances/show-attendance', 'AttendanceController@showAttendance');
 });

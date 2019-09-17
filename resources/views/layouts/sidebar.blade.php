@@ -7,33 +7,36 @@
 <div class="col-lg-2 mt-3">
     <div class="list-group" id="list-group">
         <a href="{{ url('home') }}" class="list-group-item list-group-item-action 
-                                @if(url()->current() == url('admin/home'))
-                                    bg-green-normal
+                                @if(url()->current() == url('home'))
+                                    active
                                 @endif">
             <i class="fas fa-home"></i> Dashboard
         </a>
-        <a href=" {{ "" }}" class="list-group-item list-group-item-action
-                                @if(url()->current() == url('admin/divisions'))
-                                    bg-green-normal
+        <a href=" {{ route('attendances.index') }}" class="list-group-item list-group-item-action
+                                @if(url()->current() == url('attendances'))
+                                    active
                                 @endif">
             <i class="fas fa-chart-pie"></i> Attendance
         </a>
-        {{-- <a href="{{ route('user.index') }}" class="list-group-item list-group-item-action
+        <a href="{{ route('users.index') }}" class="list-group-item list-group-item-action
         @if(url()->current() == url('admin/users'))
-        bg-green-normal
+        active
         @endif">
-        <i class="fas fa-users"></i> Users
-        </a> --}}
+            <i class="fas fa-users"></i> Users
+        </a>
 
 
-        <a href="{{ route('student.index') }}" class="list-group-item list-group-item-action">
-            <i class="fas fa-gem"></i>
-            Students</a>
-        <a href="{{ route('teacher.index') }}" class="list-group-item list-group-item-action
-            @if(url()->current() == url('admin/settings'))
-            bg-green-normal
+        <a href="{{ route('students.index') }}" class="list-group-item list-group-item-action
+            @if(url()->current() == url('students'))
+            active
             @endif">
-            <i class="fas fa-sliders-h"></i>
+            <i class="fas fa-users"></i>
+            Students</a>
+        <a href="{{ route('teachers.index') }}" class="list-group-item list-group-item-action
+            @if(url()->current() == url('teachers'))
+            active
+            @endif">
+            <i class="fas fa-users"></i>
             Teacher</a>
 
         <a href="#" class="list-group-item list-group-item-action" id="headingOne" data-toggle="collapse"
@@ -47,19 +50,19 @@
                     @endif" aria-labelledby="headingOne" data-parent="#list-group">
             <a href="{{ "" }}" class="list-group-item list-group-item-action
                         @if(url()->current() == url('admin/articles'))
-                    bg-green-normal
+                    active
                     @endif">
                 <i class="fas fa-newspaper"></i>
                 Students</a>
             <a href="{{ "" }}" class="list-group-item list-group-item-action
                         @if(url()->current() == url('admin/categories'))
-                    bg-green-normal
+                    active
                     @endif">
                 <i class="fas fa-newspaper"></i>
                 Teacher</a>
             <a href="{{ "" }}" class="list-group-item list-group-item-action
                         @if(url()->current() == url('admin/tags'))
-                    bg-green-normal
+                    active
                     @endif">
                 <i class="fas fa-newspaper"></i>
                 Tags</a>

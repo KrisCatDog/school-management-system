@@ -10,7 +10,7 @@
         <h3 class="card-title">{{ $teacher->user->name }}</h3>
         <h5 class="card-subtitle mb-2 text-muted">{{ $teacher->user->email }}</h5>
         <p class="card-text">{{ $teacher->address }}</p>
-        <a href="{{ route('teacher.index') }}" class="card-link btn btn-outline-success">Back</a>
+        <a href="{{ route('teachers.index') }}" class="card-link btn btn-outline-success">Back</a>
     </div>
 
 </div>

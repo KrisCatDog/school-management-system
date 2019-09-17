@@ -63,7 +63,7 @@ class TeacherController extends Controller
 
         Teacher::create($teacherData);
 
-        return redirect(route('teacher.index'));
+        return redirect(route('teachers.index'));
     }
 
     /**
@@ -122,7 +122,7 @@ class TeacherController extends Controller
 
         $teacher->update($teacherData);
 
-        return redirect(route('teacher.index'));
+        return redirect(route('teachers.index'));
     }
 
     /**
@@ -135,6 +135,6 @@ class TeacherController extends Controller
     {
         $teacher->delete();
 
-        return redirect(route('teacher.index'));
+        return redirect(route('teachers.index'));
     }
 }

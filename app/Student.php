@@ -21,4 +21,14 @@ class Student extends Model
             $value->user->delete();
         });
     }
+
+    public function attendances()
+    {
+        return $this->hasMany(Attendance::class);
+    }
+
+    public function class()
+    {
+        return $this->belongsTo(MyClass::class);
+    }
 }

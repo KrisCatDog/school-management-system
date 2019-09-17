@@ -6,7 +6,7 @@
 <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
         <span class="h5 mb-0"><i class="fas fa-users"></i> Teachers</span>
-        <a href="{{ route('teacher.create') }}" class="btn btn-outline-primary">Create Teacher</a>
+        <a href="{{ route('teachers.create') }}" class="btn btn-outline-primary">Create Teacher</a>
     </div>
 
     <div class="card-body">
@@ -25,11 +25,11 @@
                     <th scope="row">{{ $index }}</th>
                     <td>{{ $teacher->user->name }}</td>
                     <td>
-                        <a href="{{ route('teacher.show', ['teacher' => $teacher]) }}"
+                        <a href="{{ route('teachers.show', ['teacher' => $teacher]) }}"
                             class="btn btn-outline-info btn-sm">Detail</a>
-                        <a href="{{ route('teacher.edit', ['teacher' => $teacher]) }}"
+                        <a href="{{ route('teachers.edit', ['teacher' => $teacher]) }}"
                             class="btn btn-outline-success btn-sm">Edit</a>
-                        <form action="{{ route('teacher.destroy', ['teacher' => $teacher]) }}" method="post"
+                        <form action="{{ route('teachers.destroy', ['teacher' => $teacher]) }}" method="post"
                             class="inline custom-control-inline">
                             @csrf
                             @method('DELETE')

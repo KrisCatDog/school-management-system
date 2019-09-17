@@ -66,7 +66,7 @@ class StudentController extends Controller
 
         Student::create($studentData);
 
-        return redirect(route('student.index'));
+        return redirect(route('students.index'));
     }
 
     /**
@@ -125,7 +125,7 @@ class StudentController extends Controller
 
         $student->update($studentData);
 
-        return redirect(route('student.index'));
+        return redirect(route('students.index'));
     }
 
     /**
@@ -138,6 +138,6 @@ class StudentController extends Controller
     {
         $student->delete();
 
-        return redirect(route('student.index'));
+        return redirect(route('students.index'));
     }
 }

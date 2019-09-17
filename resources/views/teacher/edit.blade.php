@@ -6,11 +6,11 @@
 <div class="card border-success">
     <div class="card-header border-success bg-green-normal d-flex align-items-center justify-content-between">
         Edit Teacher
-        <a href="{{ route('teacher.index') }}" class="btn btn-outline-primary">Back</a>
+        <a href="{{ route('teachers.index') }}" class="btn btn-outline-primary">Back</a>
     </div>
 
     <div class="card-body">
-        <form action="{{ route('teacher.update', ['teacher' => $teacher]) }}" method="POST">
+        <form action="{{ route('teachers.update', ['teacher' => $teacher]) }}" method="POST">
             @include('teacher.form')
             @method('PATCH')
             <div class="form-group mb-0 row">

@@ -6,11 +6,11 @@
 <div class="card border-success">
     <div class="card-header border-success bg-green-normal d-flex align-items-center justify-content-between">
         Create Teacher
-        <a href="{{ route('teacher.index') }}" class="btn btn-outline-primary">Back</a>
+        <a href="{{ route('teachers.index') }}" class="btn btn-outline-primary">Back</a>
     </div>
 
     <div class="card-body">
-        <form action="{{ route('teacher.store') }}" method="POST">
+        <form action="{{ route('teachers.store') }}" method="POST">
             @include('teacher.form')
             <div class="form-group mb-0 row">
                 <div class="col-md-10 offset-1">

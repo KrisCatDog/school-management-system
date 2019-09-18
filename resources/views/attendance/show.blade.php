@@ -26,7 +26,7 @@
                     <th scope="row">{{ $index }}</th>
                     <td>{{ $student->user->name }}</td>
                     {{-- @foreach ($student->attendances as $attendance) --}}
-                    <td>{{ $student->attendances->first()->status }}</td>
+                    <td>{{ $student->attendances->where('subject_id', request()->subject_id)->first()->status }}</td>
                     {{-- @endforeach --}}
                 </tr>
                 @php $index++ @endphp

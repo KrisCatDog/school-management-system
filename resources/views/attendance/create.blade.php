@@ -35,6 +35,7 @@
                         </td>
                         <input type="hidden" name="user_id[]" value="{{ $student->id }}">
                         <input type="hidden" name="class_id[]" value="{{ $student->class_id }}">
+                        <input type="hidden" name="subject_id[]" value="{{ request()->subject_id }}">
                     </tr>
                     @php $index++ @endphp
                     @endforeach

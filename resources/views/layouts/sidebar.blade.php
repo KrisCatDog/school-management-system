@@ -37,7 +37,28 @@
             active
             @endif">
             <i class="fas fa-user-friends"></i>
-            Teacher</a>
+            Teachers</a>
+
+        <a href="{{ route('classes.index') }}" class="list-group-item list-group-item-action
+            @if(url()->current() == url('classes'))
+            active
+            @endif">
+            <i class="fas fa-door-open"></i>
+            Classes</a>
+
+        <a href="{{ route('subjects.index') }}" class="list-group-item list-group-item-action
+            @if(url()->current() == url('subjects'))
+            active
+            @endif">
+            <i class="fas fa-book-reader"></i>
+            Subjects</a>
+
+        <a href="{{ route('roles.index') }}" class="list-group-item list-group-item-action
+            @if(url()->current() == url('roles'))
+            active
+            @endif">
+            <i class="fas fa-layer-group"></i>
+            Roles</a>
 
         <a href="#" class="list-group-item list-group-item-action" id="headingOne" data-toggle="collapse"
             data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">

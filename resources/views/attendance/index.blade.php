@@ -17,18 +17,28 @@
             </button>
         </div>
         @endif
-        <form action="{{ route('attendances.show-attendance') }}" class="custom-control-inline">
-            <select name="class" id="class" class="form-control-lg">
+        <form action="{{ route('attendances.show-attendance') }}">
+            <select name="class_id" id="class_id" class="form-control-lg">
                 @foreach ($classes as $class)
                 <option value="{{ $class->id }}">{{ $class->name }}</option>
                 @endforeach
             </select>
+            <select name="subject_id" id="subject_id" class="form-control-lg">
+                @foreach ($subjects as $subject)
+                <option value="{{ $subject->id }}">{{ $subject->name }}</option>
+                @endforeach
+            </select>
             <button class="btn btn-outline-success btn-lg ml-2" type="submit">Show Attendance</button>
         </form>
-        <form action="{{ route('attendances.create') }}" class="custom-control-inline">
-            <select name="class" id="class" class="form-control-lg">
+        <form action="{{ route('attendances.create') }}" class="mt-3">
+            <select name="class_id" id="class" class="form-control-lg">
                 @foreach ($classes as $class)
                 <option value="{{ $class->id }}">{{ $class->name }}</option>
+                @endforeach
+            </select>
+            <select name="subject_id" id="subject_id" class="form-control-lg">
+                @foreach ($subjects as $subject)
+                <option value="{{ $subject->id }}">{{ $subject->name }}</option>
                 @endforeach
             </select>
             <button class="btn btn-outline-success btn-lg ml-2">Create Attendance</button>

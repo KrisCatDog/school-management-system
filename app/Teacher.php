@@ -8,11 +8,9 @@ class Teacher extends Model
 {
     protected $guarded = [];
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
+    /** 
+     * Model event for Teacher model
+     */
     protected static function boot()
     {
         parent::boot();
@@ -20,5 +18,15 @@ class Teacher extends Model
         static::deleted(function ($value) {
             $value->user->delete();
         });
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function subjects()
+    {
+        return $this->belongsToMany(Subject::class);
     }
 }

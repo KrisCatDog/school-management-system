@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Attendance;
 use App\MyClass;
 use App\Student;
+use App\Subject;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -18,8 +19,9 @@ class AttendanceController extends Controller
     public function index()
     {
         $classes = MyClass::all()->sortBy('name');
+        $subjects = Subject::all()->sortBy('name');
 
-        return view('attendance.index', compact('classes'));
+        return view('attendance.index', compact('classes', 'subjects'));
     }
 
     /**
@@ -29,15 +31,18 @@ class AttendanceController extends Controller
      */
     public function create()
     {
-        // $validateDate = Attendance::whereDate('created_at', now()->format("Y-m-d"))->get();
+        $validateData = Attendance::whereDate('created_at', now()->format("Y-m-d"))
+            ->where('class_id', request()->class_id)
+            ->where('subject_id', request()->subject_id)
+            ->get();
 
-        // if ($validateDate->count() > 0) {
-        //     session()->flash('error', 'Tidak Bisa Melakukan Absen 2 Kali');
+        if ($validateData->count() > 0) {
+            session()->flash('error', 'Tidak Bisa Melakukan Absen 2 Kali');
 
-        //     return redirect()->back();
-        // }
+            return back();
+        }
 
-        $students = Student::where('class_id', request()->class)->get();
+        $students = Student::where('class_id', request()->class_id)->get();
 
         return view('attendance.create', compact('students'));
     }
@@ -57,6 +62,7 @@ class AttendanceController extends Controller
                 'teacher_id' => auth()->user()->id,
                 'status' => $request->status[$i],
                 'class_id' => $request->class_id[$i],
+                'subject_id' => $request->subject_id[$i],
             ]);
         }
 
@@ -110,9 +116,9 @@ class AttendanceController extends Controller
 
     public function showAttendance()
     {
-        $students = Student::with('attendances')->where('class_id', request()->class)->get();
+        $students = Student::with('attendances')->where('class_id', request()->class_id)->get();
 
-        if ($students->count() == 0 || $students->first()->attendances->count() == 0) {
+        if ($students->count() == 0 || $students->first()->attendances->where('subject_id', request()->subject_id)->count() == 0) {
             abort(404);
         }
 

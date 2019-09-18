@@ -20,9 +20,14 @@ Auth::routes();
 Route::middleware(['auth'])->group(function () {
     Route::get('attendances/show-attendance', 'AttendanceController@showAttendance')->name('attendances.show-attendance');
     Route::get('/home', 'HomeController@index')->name('home');
-    Route::resource('users', 'UserController');
-    Route::resource('students', 'StudentController');
-    Route::resource('teachers', 'TeacherController');
-    Route::resource('attendances', 'AttendanceController');
-    // Route::post('attendances/show-attendance', 'AttendanceController@showAttendance');
+    Route::get('/roles', 'RoleController@index')->name('roles.index');
+
+    Route::resources([
+        'users' => 'UserController',
+        'students' => 'StudentController',
+        'teachers' => 'TeacherController',
+        'attendances' => 'AttendanceController',
+        'classes' => 'ClassController',
+        'subjects' => 'SubjectController',
+    ]);
 });

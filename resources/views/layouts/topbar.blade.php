@@ -4,7 +4,7 @@
             {{-- <img src="{{ asset('img/logo-min.png') }}" width="50" height="50" class="d-inline-block
             align-top"> --}}
             {{-- <span class="ml-2 h5">Title</span> --}}
-            SMS Beta
+            Laravel
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">

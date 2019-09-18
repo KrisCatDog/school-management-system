@@ -49,9 +49,8 @@
         </main>
 
         <footer class="text-center p-3 ">
-            <div class="container d-flex justify-content-between">
-                <span>Made with <i class="fas fa-heart"></i> & <i class="fas fa-fist-raised"></i></span>
-                <span>&copy; {{ date("Y") }} D'Techno 13. All rights reserved.</span>
+            <div class="container">
+                <span>&copy; {{ date("Y") }}</span>
             </div>
         </footer>
     </div>

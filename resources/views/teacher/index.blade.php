@@ -14,7 +14,8 @@
             <thead>
                 <tr>
                     <th scope="col">No</th>
-                    <th scope="col" style="width: 40%">Name</th>
+                    <th scope="col" style="width: 20%">Name</th>
+                    <th scope="col">Address</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
@@ -24,6 +25,7 @@
                 <tr>
                     <th scope="row">{{ $index }}</th>
                     <td>{{ $teacher->user->name }}</td>
+                    <td>{{ $teacher->address }}</td>
                     <td>
                         <a href="{{ route('teachers.show', ['teacher' => $teacher]) }}"
                             class="btn btn-outline-info btn-sm">Detail</a>

@@ -19,7 +19,7 @@
             <i class="fas fa-chart-pie"></i> Attendance
         </a>
         <a href="{{ route('users.index') }}" class="list-group-item list-group-item-action
-        @if(url()->current() == url('admin/users'))
+        @if(url()->current() == url('users'))
         active
         @endif">
             <i class="fas fa-users"></i> Users
@@ -30,13 +30,13 @@
             @if(url()->current() == url('students'))
             active
             @endif">
-            <i class="fas fa-users"></i>
+            <i class="fas fa-user-tie"></i>
             Students</a>
         <a href="{{ route('teachers.index') }}" class="list-group-item list-group-item-action
             @if(url()->current() == url('teachers'))
             active
             @endif">
-            <i class="fas fa-users"></i>
+            <i class="fas fa-user-friends"></i>
             Teacher</a>
 
         <a href="#" class="list-group-item list-group-item-action" id="headingOne" data-toggle="collapse"
@@ -53,19 +53,19 @@
                     active
                     @endif">
                 <i class="fas fa-newspaper"></i>
-                Students</a>
+                Menu</a>
             <a href="{{ "" }}" class="list-group-item list-group-item-action
                         @if(url()->current() == url('admin/categories'))
                     active
                     @endif">
                 <i class="fas fa-newspaper"></i>
-                Teacher</a>
+                Menu</a>
             <a href="{{ "" }}" class="list-group-item list-group-item-action
                         @if(url()->current() == url('admin/tags'))
                     active
                     @endif">
                 <i class="fas fa-newspaper"></i>
-                Tags</a>
+                Menu</a>
         </div>
     </div>
 </div>

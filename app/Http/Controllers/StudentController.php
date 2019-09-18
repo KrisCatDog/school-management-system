@@ -78,6 +78,8 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
+        $student->load('user')->load('class');
+
         return view('student.show', compact('student'));
     }
 
@@ -108,6 +110,7 @@ class StudentController extends Controller
             'email' => 'required|email|unique:users,email,' . $student->user_id,
             'password' => 'required|confirmed|min:6',
             'address' => 'required',
+            'class_id' => 'required',
         ]);
 
         $userData = [
@@ -124,6 +127,7 @@ class StudentController extends Controller
         $studentData = [
             'user_id' => $user->id,
             'address' => $validatedData['address'],
+            'class_id' => $validatedData['class_id'],
         ];
 
         $student->update($studentData);

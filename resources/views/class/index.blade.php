@@ -5,7 +5,7 @@
 
 <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <span class="h5 mb-0"><i class="fas fa-book-reader"></i> Subjects</span>
+        <span class="h5 mb-0"> <i class="fas fa-door-open"></i> Classes</a></span>
         {{-- <a href="{{ route('users.create') }}" class="btn btn-outline-light">Create User</a> --}}
     </div>
 

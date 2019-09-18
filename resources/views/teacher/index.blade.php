@@ -5,7 +5,7 @@
 
 <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <span class="h5 mb-0"><i class="fas fa-users"></i> Teachers</span>
+        <span class="h5 mb-0"><i class="fas fa-user-friends"></i> Teachers</span>
         <a href="{{ route('teachers.create') }}" class="btn btn-outline-primary">Create Teacher</a>
     </div>
 

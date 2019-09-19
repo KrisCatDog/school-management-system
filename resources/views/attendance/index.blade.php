@@ -19,11 +19,13 @@
         @endif
         <form action="{{ route('attendances.show-attendance') }}">
             <select name="class_id" id="class_id" class="form-control-lg">
+                <option disabled selected>Select Class</option>
                 @foreach ($classes as $class)
                 <option value="{{ $class->id }}">{{ $class->name }}</option>
                 @endforeach
             </select>
             <select name="subject_id" id="subject_id" class="form-control-lg">
+                <option disabled selected>Select Subject</option>
                 @foreach ($subjects as $subject)
                 <option value="{{ $subject->id }}">{{ $subject->name }}</option>
                 @endforeach
@@ -32,11 +34,13 @@
         </form>
         <form action="{{ route('attendances.create') }}" class="mt-3">
             <select name="class_id" id="class" class="form-control-lg">
+                <option disabled selected>Select Class</option>
                 @foreach ($classes as $class)
                 <option value="{{ $class->id }}">{{ $class->name }}</option>
                 @endforeach
             </select>
             <select name="subject_id" id="subject_id" class="form-control-lg">
+                <option disabled selected>Select Subject</option>
                 @foreach ($subjects as $subject)
                 <option value="{{ $subject->id }}">{{ $subject->name }}</option>
                 @endforeach

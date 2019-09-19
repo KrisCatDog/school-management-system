@@ -14,12 +14,18 @@ class TeachersTableSeeder extends Seeder
         factory('App\Teacher', 15)->create();
 
         $subjects = App\Subject::all();
+        $classes = App\MyClass::all();
 
         App\Teacher::all()->each(function ($teacher) use ($subjects) {
             $teacher->subjects()->attach(
                 $subjects->random(rand(1, $subjects->count()))->pluck('id')->toArray()
             );
-            // $teacher->subjects()->saveMany($subjects);
+        });
+
+        App\Teacher::all()->each(function ($teacher) use ($classes) {
+            $teacher->classes()->attach(
+                $classes->random(rand(1, $classes->count()))->pluck('id')->toArray()
+            );
         });
     }
 }

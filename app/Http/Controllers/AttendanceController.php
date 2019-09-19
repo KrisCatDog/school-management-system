@@ -19,7 +19,8 @@ class AttendanceController extends Controller
     public function index()
     {
         $classes = MyClass::all()->sortBy('name');
-        $subjects = Subject::all()->sortBy('name');
+
+        $subjects = auth()->user()->teacher->subjects()->get();
 
         return view('attendance.index', compact('classes', 'subjects'));
     }

@@ -77,3 +77,47 @@
         @enderror
     </div>
 </div>
+
+<div class="form-group row">
+    <label for="classes" class="col-md-10 offset-1">Classes</label>
+
+    <div class="col-md-10 offset-1">
+        <div class="d-flex flex-wrap">
+
+            @foreach ($classes as $class)
+            <div class="w-25">
+                <input type="checkbox" name="classes[]" id="classes" value="{{ $class->id ?? old('classes') }}">
+                <label>{{ $class->name }}</label> <br>
+            </div>
+            @endforeach
+        </div>
+
+        @error('classes')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+        @enderror
+    </div>
+</div>
+
+
+<div class="form-group row">
+    <label for="subjects" class="col-md-10 offset-1">Subjects</label>
+
+    <div class="col-md-10 offset-1">
+        <div class="d-flex flex-wrap">
+            @foreach ($subjects as $subject)
+            <div class="w-50">
+                <input type="checkbox" name="subjects[]" id="subjects" value="{{ $subject->id ?? old('subjects') }}">
+                <label>{{ $subject->name }}</label> <br>
+            </div>
+            @endforeach
+        </div>
+
+        @error('subjects')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+        @enderror
+    </div>
+</div>

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\MyClass;
+use App\Subject;
 use App\Teacher;
 use App\User;
 use Illuminate\Http\Request;
@@ -28,8 +30,10 @@ class TeacherController extends Controller
     public function create()
     {
         $teacher = new Teacher();
+        $classes = MyClass::oldest('name')->get();
+        $subjects = Subject::oldest('name')->get();
 
-        return view('teacher.create', compact('teacher'));
+        return view('teacher.create', compact('teacher', 'classes', 'subjects'));
     }
 
     /**
@@ -45,6 +49,8 @@ class TeacherController extends Controller
             'email' => 'required|email|unique:users,email',
             'password' => 'required|confirmed|min:6',
             'address' => 'required',
+            'classes' => 'required',
+            'subjects' => 'required',
         ]);
 
         $userData = [
@@ -61,7 +67,10 @@ class TeacherController extends Controller
             'address' => $validatedData['address'],
         ];
 
-        Teacher::create($teacherData);
+        $teacher = Teacher::create($teacherData);
+
+        $teacher->classes()->attach($validatedData['classes']);
+        $teacher->subjects()->attach($validatedData['subjects']);
 
         return redirect(route('teachers.index'));
     }

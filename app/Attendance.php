@@ -8,17 +8,23 @@ class Attendance extends Model
 {
     protected $guarded = [];
 
-    public function student()
+
+    public function getCreatedAtAttribute($value)
     {
-        return $this->belongsTo(Student::class);
+        return date('m-d', strtotime($value));
     }
 
     public function getStatusAttribute($value)
     {
         return [
-            1 => 'Attend',
-            2 => 'Sick',
-            3 => 'Absent',
+            1 => '<i class="fas fa-check text-success"></i>',
+            2 => '<b class="text-info">S</b>',
+            3 => '<i class="fas fa-times text-danger"></i>',
         ][$value];
+    }
+
+    public function student()
+    {
+        return $this->belongsTo(Student::class);
     }
 }

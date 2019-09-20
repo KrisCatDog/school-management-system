@@ -18,11 +18,12 @@ class AttendanceController extends Controller
      */
     public function index()
     {
-        $classes = MyClass::all()->sortBy('name');
-
+        // $classes = MyClass::all()->sortBy('name');
+        $classes = auth()->user()->teacher->classes()->get();
         $subjects = auth()->user()->teacher->subjects()->get();
+        $months = $this->monthsData();;
 
-        return view('attendance.index', compact('classes', 'subjects'));
+        return view('attendance.index', compact('classes', 'subjects', 'months'));
     }
 
     /**
@@ -32,13 +33,13 @@ class AttendanceController extends Controller
      */
     public function create()
     {
-        $validateData = Attendance::whereDate('created_at', now()->format("Y-m-d"))
+        $validatedData = Attendance::whereDate('created_at', now()->format("Y-m-d"))
             ->where('class_id', request()->class_id)
             ->where('subject_id', request()->subject_id)
             ->get();
 
-        if ($validateData->count() > 0) {
-            session()->flash('error', 'Tidak Bisa Melakukan Absen 2 Kali');
+        if ($validatedData->count() > 0) {
+            session()->flash('twoTimesError', 'Tidak Bisa Melakukan Absen 2 Kali!');
 
             return back();
         }
@@ -60,7 +61,7 @@ class AttendanceController extends Controller
         for ($i = 0; $i < count($request->status); $i++) {
             Attendance::create([
                 'student_id' => $request->user_id[$i],
-                'teacher_id' => auth()->user()->id,
+                'teacher_id' => auth()->user()->teacher->id,
                 'status' => $request->status[$i],
                 'class_id' => $request->class_id[$i],
                 'subject_id' => $request->subject_id[$i],
@@ -117,12 +118,71 @@ class AttendanceController extends Controller
 
     public function showAttendance()
     {
-        $students = Student::with('attendances')->where('class_id', request()->class_id)->get();
+        $students = Student::with('attendances')->where('class_id', request('class_id'))->get();
+        $class = MyClass::findOrFail(request('class_id'));
+        $subject = Subject::findOrFail(request('subject_id'));
+        $month = $this->monthsData()[request('month_id') - 1]['name'];
 
-        if ($students->count() == 0 || $students->first()->attendances->where('subject_id', request()->subject_id)->count() == 0) {
-            abort(404);
-        }
+        // if ($students->count() == 0 || $students->first()->attendances->where('subject_id', request()->subject_id)->count() == 0) {
+        //     session()->flash('emptyError', 'Kelas Belum Memiliki Data Absen!');
 
-        return view('attendance.show', compact('students'));
+        //     return back();
+        // }
+
+        return view('attendance.show', compact('students', 'class', 'subject', 'month'));
+    }
+
+    private function monthsData()
+    {
+        return collect([
+            [
+                "id" => 1,
+                'name' => 'January'
+            ],
+            [
+                "id" => 2,
+                'name' => 'February'
+            ],
+            [
+                "id" => 3,
+                'name' => 'March'
+            ],
+            [
+                "id" => 4,
+                'name' => 'April'
+            ],
+            [
+                "id" => 5,
+                'name' => 'May'
+            ],
+            [
+                "id" => 6,
+                'name' => 'June'
+            ],
+            [
+                "id" => 7,
+                'name' => 'July'
+            ],
+            [
+                "id" => 8,
+                'name' => 'August'
+            ],
+            [
+                "id" => 9,
+                'name' => 'September'
+            ],
+            [
+                "id" => 10,
+                'name' => 'October'
+            ],
+            [
+                "id" => 11,
+                'name' => 'November'
+            ],
+            [
+                "id" => 12,
+                'name' => 'December'
+            ],
+        ]);
     }
 }

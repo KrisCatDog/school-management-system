@@ -3,20 +3,24 @@
 
 @section('content')
 
-<h5 class="pb-4"><i class="fas fa-home shadow-sm"></i> Dashboard</h5>
-<div class="card">
+<h5 class="pb-4"><i class="fas fa-home shadow-sm"></i> <b>Dashboard</b></h5>
 
-    <div class="card-body">
-        @if (session('status'))
-        <div class="alert alert-success" role="alert">
-            {{ session('status') }}
+<div class="d-flex">
+    <div class="card-header flex-grow-1 mr-3 d-flex align-items-center">
+        <span class="h1 mr-3"><i class="fas fa-user-tie"></i></span>
+        <div>
+            Students Today
+            <div class="h2 counter" data-count="{{ $attendances->unique('student_id')->count() }}">0</div>
         </div>
-        @endif
-
-        <p>Amounts of Student Attendances Today</p>
-        {{ $attendances->count() }}
     </div>
-</div>
+
+    <div class="card-header flex-grow-1 ml-3 d-flex align-items-center">
+        <span class="h1 mr-3"><i class="fas fa-door-open"></i></span>
+        <div>
+            Classes Today
+            <div class="h2 counter" data-count="{{ $attendances->unique('class_id')->count() }}">0</div>
+        </div>
+    </div>
 </div>
 
 @endsection

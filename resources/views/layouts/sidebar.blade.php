@@ -10,7 +10,7 @@
             <img src="{{ asset('img/logo.png') }}" width="100" height="100" class="d-inline-block
         align-top">
         </a> --}}
-        <h3 class="mb-0 text-success">SMS Beta</h3>
+        <h3 class="mb-0 text-success"><b>SMS Beta</b></h3>
     </div>
     <div class="container">
         <hr class="m-0 mb-4">
@@ -23,7 +23,7 @@
             <i class="fas fa-home"></i> Dashboard
         </a>
         <a href=" {{ route('attendances.index') }}" class="list-group-item list-group-item-action
-                                @if(url()->current() == url('attendances'))
+                                @if(Request::is('attendances*'))
                                     active
                                 @endif">
             <i class="fas fa-chart-pie"></i> Attendances
@@ -36,13 +36,13 @@
         </a>
 
         <a href="{{ route('students.index') }}" class="list-group-item list-group-item-action
-            @if(url()->current() == url('students'))
+            @if(Request::is('students*'))
             active
             @endif">
             <i class="fas fa-user-tie"></i>
             Students</a>
         <a href="{{ route('teachers.index') }}" class="list-group-item list-group-item-action
-            @if(url()->current() == url('teachers'))
+            @if(Request::is('teachers*'))
             active
             @endif">
             <i class="fas fa-user-friends"></i>

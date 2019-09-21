@@ -18,7 +18,6 @@ class AttendanceController extends Controller
      */
     public function index()
     {
-        // $classes = MyClass::all()->sortBy('name');
         $classes = auth()->user()->teacher->classes()->get();
         $subjects = auth()->user()->teacher->subjects()->get();
         $months = $this->monthsData();;
@@ -33,6 +32,18 @@ class AttendanceController extends Controller
      */
     public function create()
     {
+        if (request('class_id') == null) {
+            session()->flash('twoTimesError', 'Pilih Kelas Terlebih Dulu!');
+
+            return back();
+        }
+
+        if (request('subject_id') == null) {
+            session()->flash('twoTimesError', 'Pilih Mapel Terlebih Dulu!');
+
+            return back();
+        }
+
         $validatedData = Attendance::whereDate('created_at', now()->format("Y-m-d"))
             ->where('class_id', request()->class_id)
             ->where('subject_id', request()->subject_id)
@@ -118,6 +129,24 @@ class AttendanceController extends Controller
 
     public function showAttendance()
     {
+        if (request('class_id') == null) {
+            session()->flash('emptyError', 'Pilih Kelas Terlebih Dulu!');
+
+            return back();
+        }
+
+        if (request('subject_id') == null) {
+            session()->flash('emptyError', 'Pilih Mapel Terlebih Dulu!');
+
+            return back();
+        }
+
+        if (request('month_id') == null) {
+            session()->flash('emptyError', 'Pilih Bulan Terlebih Dulu!');
+
+            return back();
+        }
+
         $students = Student::with('attendances')->where('class_id', request('class_id'))->get();
         $class = MyClass::findOrFail(request('class_id'));
         $subject = Subject::findOrFail(request('subject_id'));

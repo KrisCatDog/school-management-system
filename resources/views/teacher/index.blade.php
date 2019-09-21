@@ -3,7 +3,7 @@
 
 @section('content')
 
-<h5 class="py-3"><i class="fas fa-user-friends shadow-sm"></i> Teachers</h5>
+<h5 class="py-3"><i class="fas fa-user-friends shadow-sm"></i> <b>Teachers</b></h5>
 <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
         <span class="h5 mb-0"><i class="fas fa-user-friends"></i> Teachers</span>
@@ -11,7 +11,7 @@
     </div>
 
     <div class="card-body">
-        <table class="table table-hover table-striped">
+        <table class="table table-hover table-borderless table-striped">
             <thead>
                 <tr>
                     <th scope="col">No</th>

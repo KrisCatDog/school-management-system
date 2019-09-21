@@ -57,6 +57,23 @@
                 $('.sidebar').toggleClass('active');
                 $(this).toggleClass('active');
             });
+
+            $('.counter').each(function() {
+                var $this = $(this), countTo = $this.attr('data-count');
+                $({ countNum: $this.text()}).animate({
+                    countNum: countTo
+                },
+                {
+                    duration: 600,
+                    easing: 'swing',
+                    step: function() {
+                    $this.text(Math.floor(this.countNum));
+                    },
+                    complete: function() {
+                    $this.text(this.countNum);
+                    }
+                });  
+            });
         });
     </script>
 </body>

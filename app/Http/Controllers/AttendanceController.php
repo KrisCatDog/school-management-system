@@ -26,7 +26,7 @@ class AttendanceController extends Controller
             return view('attendance.index', compact('classes', 'subjects', 'months'));
         }
 
-        $classes = auth()->user()->teacher->classes()->get();
+        $classes = auth()->user()->teacher->classes()->oldest('name')->get();
         $subjects = auth()->user()->teacher->subjects()->get();
         $months = $this->monthsData();
 

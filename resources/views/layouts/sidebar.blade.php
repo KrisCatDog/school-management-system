@@ -6,11 +6,9 @@
 </style>
 <aside class="sidebar">
     <div class="sidebar-header text-center">
-        {{-- <a class="navbar-brand" href="#">
-            <img src="{{ asset('img/logo.png') }}" width="100" height="100" class="d-inline-block
-        align-top">
-        </a> --}}
-        <h3 class="mb-0 text-success"><b>SMS Beta</b></h3>
+        <a class="navbar-brand" href="{{ url('/') }}">
+            <h3 class="mb-0 text-success"><b>SMS Beta</b></h3>
+        </a>
     </div>
     <div class="container">
         <hr class="m-0 mb-4">

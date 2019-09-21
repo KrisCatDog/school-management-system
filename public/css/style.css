@@ -1,4 +1,37 @@
-@import url(https://fonts.googleapis.com/css?family=Quicksand:400,600&display=swap);.app {
+@import url(https://fonts.googleapis.com/css?family=Quicksand:400,600&display=swap);.btn-gd-success {
+  background: linear-gradient(240deg, #38c172, rgba(56, 193, 114, 0.4));
+  color: #fff !important;
+  border: 0 !important;
+  transition: 0.4s all !important;
+}
+
+.btn-gd-success:hover {
+  opacity: 0.7;
+}
+
+.btn-gd-warning {
+  background: linear-gradient(240deg, #f6993f, rgba(246, 153, 63, 0.4));
+  color: #fff !important;
+  border: 0 !important;
+  transition: 0.4s all !important;
+}
+
+.btn-gd-warning:hover {
+  opacity: 0.7;
+}
+
+.btn-gd-info {
+  background: linear-gradient(240deg, #3490dc, rgba(52, 144, 220, 0.4));
+  color: #fff !important;
+  border: 0 !important;
+  transition: 0.4s all !important;
+}
+
+.btn-gd-info:hover {
+  opacity: 0.7;
+}
+
+.app {
   display: flex;
   width: 100%;
   height: 100%;

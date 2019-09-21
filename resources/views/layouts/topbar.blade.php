@@ -4,11 +4,18 @@
         {{-- <img src="{{ asset('img/logo.png') }}" width="50" height="50" class="d-inline-block
         align-top"> --}}
         {{-- <span class="ml-2 h5">Title</span> --}}
+        @auth
         <button type="button" id="sidebarCollapse" class="navbar-btn">
             <span></span>
             <span></span>
             <span></span>
         </button>
+        @endauth
+        @guest
+        <a class="navbar-brand" href="{{ url('/') }}">
+            School Management System
+        </a>
+        @endguest
         {{-- </a> --}}
 
         {{-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"

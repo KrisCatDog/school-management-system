@@ -6,7 +6,7 @@
 <h5 class="pb-4"><i class="fas fa-chart-pie shadow-sm"></i> <b>Attendances</b></h5>
 
 @if ($classes->count() > 0 || $subjects->count() > 0)
-@if (Auth::user()->role_id == 2)
+@if (Auth::user()->role_id == 3)
 <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
         <span class="h5 mb-0">Create Attendance</span>

@@ -20,10 +20,12 @@
             font-weight: 200;
             height: 100vh;
             margin: 0;
+            display: flex;
+            flex-direction: column;
         }
 
         .full-height {
-            height: 100vh;
+            flex-grow: 1;
         }
 
         .flex-center {
@@ -59,6 +61,12 @@
         .m-b-md {
             margin-bottom: 30px;
         }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            font-weight: 600;
+        }
     </style>
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
@@ -82,6 +90,10 @@
             </div>
         </div>
     </div>
+
+    <footer>
+        &copy; 2019
+    </footer>
 </body>
 
 </html>

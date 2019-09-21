@@ -3,6 +3,7 @@
 
 @section('content')
 
+<h5 class="py-3"><i class="fas fa-layer-group shadow-sm"></i> Roles</h5>
 <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
         <span class="h5 mb-0"> <i class="fas fa-layer-group"></i> Roles</a></span>

@@ -20,7 +20,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    {{-- <link href="{{ asset('css/style.css') }}" rel="stylesheet"> --}}
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
     <!-- Icon -->
     {{-- <link rel="shortcut icon" href="{{ asset('img/logo-min.png') }}" type="image/x-icon"> --}}
@@ -28,33 +28,37 @@
 
 <body>
     <!-- APP <Start> -->
-    <div id="app" class="d-flex flex-column h-100" style="min-height: 100vh">
-        @include('layouts.topbar')
+    <div id="app" class="app">
+        @include('layouts.sidebar')
 
-        <main class="py-4 flex-grow-1 h-100">
+        <main class="flex-grow-1">
+            @include('layouts.topbar')
             <div class="container-fluid">
-                <div class="row">
-                    @include('layouts.sidebar')
+                <div class="row py-4 px-3">
                     @if (Auth::user())
-                    <div class="col-lg-10 mt-3">
+                    <div class="col-lg-12 mt-3">
                         @endif
-                        @guest
-                        <div class="col-lg-12 mt-3">
-                            @endguest
-
-                            @yield('content')
-                        </div>
+                        @yield('content')
                     </div>
                 </div>
-        </main>
-
-        <footer class="text-center p-3 ">
-            <div class="container">
-                <span>&copy; {{ date("Y") }}</span>
+                <footer class="text-center p-3">
+                    <span>&copy; {{ date("Y") }}</span>
+                </footer>
             </div>
-        </footer>
+        </main>
     </div>
+
+
     <!-- APP <End> -->
+
+    <script>
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('.sidebar').toggleClass('active');
+                $(this).toggleClass('active');
+            });
+        });
+    </script>
 </body>
 
 </html>

@@ -3,6 +3,7 @@
 
 @section('content')
 
+<h5 class="py-3"><i class="fas fa-users shadow-sm"></i> Users</h5>
 <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
         <span class="h5 mb-0"><i class="fas fa-users"></i> Users</span>
@@ -22,6 +23,7 @@
             </thead>
             <tbody>
                 @php $index = 1 @endphp
+
                 @foreach ($users as $user)
                 <tr>
                     <th scope="row">{{ $index }}</th>
@@ -45,6 +47,7 @@
                 @endforeach
             </tbody>
         </table>
+        {{ $users->links() }}
     </div>
 </div>
 

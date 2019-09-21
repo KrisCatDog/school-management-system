@@ -3,10 +3,8 @@
 
 @section('content')
 
+<h5 class="pb-4"><i class="fas fa-home shadow-sm"></i> Dashboard</h5>
 <div class="card">
-    <div class="card-header">
-        <span class="h5 mb-0"><i class="fas fa-home"></i> Dashboard</span>
-    </div>
 
     <div class="card-body">
         @if (session('status'))
@@ -15,7 +13,8 @@
         </div>
         @endif
 
-        You are logged in!
+        <p>Amounts of Student Attendances Today</p>
+        {{ $attendances->count() }}
     </div>
 </div>
 </div>

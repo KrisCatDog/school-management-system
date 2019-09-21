@@ -4,7 +4,17 @@
         margin-right: .8rem;
     }
 </style>
-<div class="col-lg-2 mt-3">
+<aside class="sidebar">
+    <div class="sidebar-header text-center">
+        {{-- <a class="navbar-brand" href="#">
+            <img src="{{ asset('img/logo.png') }}" width="100" height="100" class="d-inline-block
+        align-top">
+        </a> --}}
+        <h3 class="mb-0 text-success">SMS Beta</h3>
+    </div>
+    <div class="container">
+        <hr class="m-0 mb-4">
+    </div>
     <div class="list-group" id="list-group">
         <a href="{{ url('home') }}" class="list-group-item list-group-item-action 
                                 @if(url()->current() == url('home'))
@@ -16,7 +26,7 @@
                                 @if(url()->current() == url('attendances'))
                                     active
                                 @endif">
-            <i class="fas fa-chart-pie"></i> Attendance
+            <i class="fas fa-chart-pie"></i> Attendances
         </a>
         <a href="{{ route('users.index') }}" class="list-group-item list-group-item-action
         @if(url()->current() == url('users'))
@@ -24,7 +34,6 @@
         @endif">
             <i class="fas fa-users"></i> Users
         </a>
-
 
         <a href="{{ route('students.index') }}" class="list-group-item list-group-item-action
             @if(url()->current() == url('students'))
@@ -66,28 +75,29 @@
             Another <i class="fas fa-chevron-down ml-2"></i></a>
 
         <div id="collapseOne" class="collapse  text-center
-                    @if(url()->current() == url('admin/articles') || url()->current() == url('admin/categories') || url()->current() == url('admin/tags'))
-                    show
-                    @endif" aria-labelledby="headingOne" data-parent="#list-group">
+                @if(url()->current() == url('admin/articles') || url()->current() == url('admin/categories') || url()->current() == url('admin/tags'))
+                show
+                @endif" aria-labelledby="headingOne" data-parent="#list-group">
             <a href="{{ "" }}" class="list-group-item list-group-item-action
-                        @if(url()->current() == url('admin/articles'))
-                    active
-                    @endif">
+                    @if(url()->current() == url('admin/articles'))
+                active
+                @endif">
                 <i class="fas fa-newspaper"></i>
                 Menu</a>
             <a href="{{ "" }}" class="list-group-item list-group-item-action
-                        @if(url()->current() == url('admin/categories'))
-                    active
-                    @endif">
+                    @if(url()->current() == url('admin/categories'))
+                active
+                @endif">
                 <i class="fas fa-newspaper"></i>
                 Menu</a>
             <a href="{{ "" }}" class="list-group-item list-group-item-action
-                        @if(url()->current() == url('admin/tags'))
-                    active
-                    @endif">
+                    @if(url()->current() == url('admin/tags'))
+                active
+                @endif">
                 <i class="fas fa-newspaper"></i>
                 Menu</a>
         </div>
+
     </div>
-</div>
+</aside>
 @endif

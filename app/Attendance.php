@@ -18,7 +18,7 @@ class Attendance extends Model
     {
         return [
             1 => '<i class="fas fa-check text-success"></i>',
-            2 => '<b class="text-info">S</b>',
+            2 => '<b class="text-orange">S</b>',
             3 => '<i class="fas fa-times text-danger"></i>',
         ][$value];
     }

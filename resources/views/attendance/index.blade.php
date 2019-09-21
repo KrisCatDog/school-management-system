@@ -4,6 +4,9 @@
 @section('content')
 
 <h5 class="pb-4"><i class="fas fa-chart-pie shadow-sm"></i> <b>Attendances</b></h5>
+
+@if ($classes->count() > 0 || $subjects->count() > 0)
+@if (Auth::user()->role_id == 2)
 <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
         <span class="h5 mb-0">Create Attendance</span>
@@ -35,6 +38,11 @@
         </form>
     </div>
 </div>
+@else
+<div class="card-header d-flex justify-content-between align-items-center">
+    <span class="h5 mb-0">Admin can't create Attendance!</span>
+</div>
+@endif
 
 <div class="card mt-5">
     <div class="card-header d-flex justify-content-between align-items-center">
@@ -73,5 +81,11 @@
         </form>
     </div>
 </div>
+@else
+<div class="card-header d-flex justify-content-between align-items-center">
+    <span class="h5 mb-0">You don't have any Class or Subject!</span>
+</div>
+@endif
+
 
 @endsection

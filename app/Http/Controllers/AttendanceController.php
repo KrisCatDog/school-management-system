@@ -18,9 +18,17 @@ class AttendanceController extends Controller
      */
     public function index()
     {
+        if (auth()->user()->role_id == 1) {
+            $classes = MyClass::oldest('name')->get();
+            $subjects = Subject::oldest('name')->get();
+            $months = $this->monthsData();
+
+            return view('attendance.index', compact('classes', 'subjects', 'months'));
+        }
+
         $classes = auth()->user()->teacher->classes()->get();
         $subjects = auth()->user()->teacher->subjects()->get();
-        $months = $this->monthsData();;
+        $months = $this->monthsData();
 
         return view('attendance.index', compact('classes', 'subjects', 'months'));
     }

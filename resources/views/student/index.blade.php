@@ -6,7 +6,7 @@
 <h5 class="py-3"><i class="fas fa-user-tie shadow-sm"></i> <b>Students</b></h5>
 <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <span class="h5 mb-0"><i class="fas fa-user-tie"></i> List of Students</span>
+        <span class="h5 mb-0"><i class="fas fa-user-tie mr-1"></i> List of Students</span>
         <a href="{{ route('students.create') }}" class="btn btn-gd-info btn-lg">Create Student</a>
     </div>
 

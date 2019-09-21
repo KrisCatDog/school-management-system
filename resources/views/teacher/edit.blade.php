@@ -6,7 +6,7 @@
 <div class="card border-success">
     <div class="card-header border-success bg-green-normal d-flex align-items-center justify-content-between">
         Edit Teacher
-        <a href="{{ route('teachers.index') }}" class="btn btn-outline-primary">Back</a>
+        <a href="{{ route('teachers.index') }}" class="btn btn-gd-info">Back</a>
     </div>
 
     <div class="card-body">

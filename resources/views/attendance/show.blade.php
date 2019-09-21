@@ -4,7 +4,7 @@
 @section('content')
 
 
-<h5 class="pb-4"><i class="fas fa-chart-pie shadow-sm"></i> Attendances Data</h5>
+<h5 class="pb-4"><i class="fas fa-chart-pie shadow-sm"></i> <b> Attendances Data</b></h5>
 <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center bg-green">
         <span class="h5 mb-0"><i class="fas fa-door-open"></i> <b> {{ $class->name }}</b>
@@ -32,19 +32,24 @@
                         <td>{{ $student->user->name }}</td>
 
                         @for ($i = 1; $i <= 31; $i++) <td>
-                            {!!
-                            $student->attendances->where('subject_id', request()->subject_id)->where('student_id',
-                            $student->id)->where('created_at', 0 . request('month_id') . "-" . $date = ($i < 10) ? 0 .
-                                $i : $i)->
-                                first()->status
-                                ?? "."
-                                !!}
-                                </td>
-                                @endfor
+                            @php
+                            $m = (request('month_id') < 10) ? 0 . request('month_id') : request('month_id') @endphp {!!
+                                $student->attendances
+                                ->where('subject_id', request()->subject_id)
+                                ->where('student_id', $student->id)
+                                ->where('created_at', $m . "-" . $date=($i < 10) ? 0 . $i : $i)->
+                                    first()->status
+                                    ?? "."
+                                    !!}
+                                    </td>
+                                    @endfor
+
                     </tr>
+
                     @php $index++ @endphp
                     @endforeach
                     <tr>
+
                 </tbody>
                 <p></p>
             </table>

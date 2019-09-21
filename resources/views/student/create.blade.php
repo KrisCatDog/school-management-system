@@ -6,7 +6,7 @@
 <div class="card">
     <div class="card-header d-flex align-items-center justify-content-between">
         Create Student
-        <a href="{{ route('students.index') }}" class="btn btn-outline-primary">Back</a>
+        <a href="{{ route('students.index') }}" class="btn btn-gd-info">Back</a>
     </div>
 
     <div class="card-body">

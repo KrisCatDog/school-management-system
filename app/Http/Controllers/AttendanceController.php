@@ -56,8 +56,10 @@ class AttendanceController extends Controller
         }
 
         $students = Student::where('class_id', request()->class_id)->get();
+        $class = MyClass::findOrFail(request('class_id'));
+        $subject = Subject::findOrFail(request('subject_id'));
 
-        return view('attendance.create', compact('students'));
+        return view('attendance.create', compact('students', 'class', 'subject'));
     }
 
     /**

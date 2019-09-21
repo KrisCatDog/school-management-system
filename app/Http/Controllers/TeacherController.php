@@ -94,7 +94,10 @@ class TeacherController extends Controller
      */
     public function edit(Teacher $teacher)
     {
-        return view('teacher.edit', compact('teacher'));
+        $classes = MyClass::oldest('name')->get();
+        $subjects = Subject::oldest('name')->get();
+
+        return view('teacher.edit', compact('teacher', 'classes', 'subjects'));
     }
 
     /**
@@ -111,6 +114,8 @@ class TeacherController extends Controller
             'email' => 'required|email|unique:users,email,' . $teacher->user_id,
             'password' => 'required|confirmed|min:6',
             'address' => 'required',
+            'classes' => 'required',
+            'subjects' => 'required',
         ]);
 
         $userData = [
@@ -130,6 +135,9 @@ class TeacherController extends Controller
         ];
 
         $teacher->update($teacherData);
+
+        $teacher->classes()->sync($validatedData['classes']);
+        $teacher->subjects()->sync($validatedData['subjects']);
 
         return redirect(route('teachers.index'));
     }

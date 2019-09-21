@@ -3,10 +3,15 @@
 
 @section('content')
 
+<h5 class="pb-4"><i class="fas fa-chart-pie shadow-sm"></i> <b>Create Attendance</b></h5>
 <div class="card">
-    <div class="card-header d-flex justify-content-between align-items-center">
-        <span class="h5 mb-0"><i class="fas fa-chart-pie"></i> Attendance</span>
-        {{-- <a href="{{ route('users.create') }}" class="btn btn-outline-light">Create User</a> --}}
+
+    <div class="card-header d-flex justify-content-between align-items-center bg-green">
+        <span class="h5 mb-0"><i class="fas fa-door-open"></i> <b> {{ $class->name }}</b>
+        </span>
+        <span class="h5 mb-0"><i class="far fa-clock"></i>
+            <b>{{ now()->format('l, j F Y h:i:s A') }}</b> </span>
+        <span class="h5 mb-0"><i class="fas fa-book-reader"></i> <b>{{ $subject->name }}</b> </span>
     </div>
 
     <div class="card-body">
@@ -39,16 +44,13 @@
                     </tr>
                     @php $index++ @endphp
                     @endforeach
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <button type="submit" class="btn btn-outline-success">Submit</button>
-                        </td>
-                    </tr>
-                </form>
             </tbody>
         </table>
+        <div class="d-flex justify-content-around">
+            <a href="{{ route('attendances.index') }}" class="btn btn-gd-success">Back</a>
+            <button type="submit" class="btn btn-outline-success">Submit</button>
+        </div>
+        </form>
     </div>
 </div>
 

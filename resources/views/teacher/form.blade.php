@@ -86,16 +86,22 @@
 
             @foreach ($classes as $class)
             <div class="w-25">
-                <input type="checkbox" name="classes[]" id="classes" value="{{ $class->id ?? old('classes') }}">
+                <input type="checkbox" name="classes[]" id="classes" value="{{ $class->id ?? old('classes') }}"
+                    @foreach($teacher->classes as $teacherClass)
+                @if ($teacherClass->id == $class->id)
+                checked
+                @endif
+                @endforeach
+                >
                 <label>{{ $class->name }}</label> <br>
             </div>
             @endforeach
         </div>
 
         @error('classes')
-        <span class="invalid-feedback" role="alert">
+        <p class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
-        </span>
+        </p>
         @enderror
     </div>
 </div>
@@ -108,7 +114,13 @@
         <div class="d-flex flex-wrap">
             @foreach ($subjects as $subject)
             <div class="w-50">
-                <input type="checkbox" name="subjects[]" id="subjects" value="{{ $subject->id ?? old('subjects') }}">
+                <input type="checkbox" name="subjects[]" id="subjects" value="{{ $subject->id ?? old('subjects') }}"
+                    @foreach($teacher->subjects as $teacherSubject)
+                @if ($teacherSubject->id == $subject->id)
+                checked
+                @endif
+                @endforeach
+                >
                 <label>{{ $subject->name }}</label> <br>
             </div>
             @endforeach

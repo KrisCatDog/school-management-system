@@ -8,7 +8,7 @@
 @if ($classes->count() > 0 || $subjects->count() > 0)
 @if (Auth::user()->role_id == 3)
 <div class="card">
-    <div class="card-header d-flex justify-content-between align-items-center">
+    <div class="card-header bg-green-lime-reverse d-flex justify-content-between align-items-center">
         <span class="h5 mb-0">Create Attendance</span>
     </div>
 
@@ -39,13 +39,13 @@
     </div>
 </div>
 @else
-<div class="card-header d-flex justify-content-between align-items-center">
+<div class="card-header bg-green-lime-reverse d-flex justify-content-between align-items-center">
     <span class="h5 mb-0">Admin can't create Attendance!</span>
 </div>
 @endif
 
 <div class="card mt-5">
-    <div class="card-header d-flex justify-content-between align-items-center">
+    <div class="card-header bg-green-lime-reverse d-flex justify-content-between align-items-center">
         <span class="h5 mb-0">Show Attendance</span>
     </div>
 
@@ -82,7 +82,7 @@
     </div>
 </div>
 @else
-<div class="card-header d-flex justify-content-between align-items-center">
+<div class="card-header bg-green-lime-reverse d-flex justify-content-between align-items-center">
     <span class="h5 mb-0">You don't have any Class or Subject!</span>
 </div>
 @endif

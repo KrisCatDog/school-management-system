@@ -3,15 +3,15 @@
 
 @section('content')
 
-
 <h5 class="pb-4"><i class="fas fa-chart-pie shadow-sm"></i> <b> Attendances Data</b></h5>
 <div class="card">
-    <div class="card-header d-flex justify-content-between align-items-center bg-green">
+    <div class="card-header bg-green-lime d-flex justify-content-between align-items-center">
         <span class="h5 mb-0"><i class="fas fa-door-open"></i> <b> {{ $class->name }}</b>
         </span>
         <span class="h5 mb-0"><i class="fas fa-moon"></i> <b>{{ $month }}</b> </span>
         <span class="h5 mb-0"><i class="fas fa-book-reader"></i> <b>{{ $subject->name }}</b> </span>
     </div>
+
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-hover table-borderless table-striped table-sm ">
@@ -54,15 +54,6 @@
                 <p></p>
             </table>
         </div>
-
-        {{-- <div class="jumbotron">
-            <h1 class="display-4">Hello, world!</h1>
-            <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention
-                to featured content or information.</p>
-            <hr class="my-4">
-            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-        </div> --}}
 
         <div class="mt-3 jumbotron">
             <table class="h5">

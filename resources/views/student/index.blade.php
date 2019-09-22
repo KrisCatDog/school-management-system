@@ -5,9 +5,9 @@
 
 <h5 class="py-3"><i class="fas fa-user-tie shadow-sm"></i> <b>Students</b></h5>
 <div class="card">
-    <div class="card-header d-flex justify-content-between align-items-center">
+    <div class="card-header bg-green-lime-reverse d-flex justify-content-between align-items-center">
         <span class="h5 mb-0"><i class="fas fa-user-tie mr-1"></i> List of Students</span>
-        <a href="{{ route('students.create') }}" class="btn btn-gd-info btn-lg">Create Student</a>
+        <a href="{{ route('students.create') }}" class="btn btn-outline-success btn-lg">Create Student</a>
     </div>
 
     <div class="card-body">

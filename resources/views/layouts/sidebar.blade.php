@@ -1,13 +1,8 @@
 @if (Auth::user())
-<style>
-    .list-group-item i {
-        margin-right: .8rem;
-    }
-</style>
 <aside class="sidebar">
     <div class="sidebar-header text-center">
         <a class="navbar-brand" href="{{ url('/') }}">
-            <h3 class="mb-0 text-success"><b>SMS Beta</b></h3>
+            <h3 class="mb-0"><b>SMS Beta</b></h3>
         </a>
     </div>
     <div class="container">
@@ -18,58 +13,59 @@
                                 @if(url()->current() == url('home'))
                                     active
                                 @endif">
-            <i class="fas fa-home"></i> Dashboard
+            <i class="fas fa-home text-success"></i> Dashboard
         </a>
+
         <a href=" {{ route('attendances.index') }}" class="list-group-item list-group-item-action
                                 @if(Request::is('attendances*'))
                                     active
                                 @endif">
-            <i class="fas fa-chart-pie"></i> Attendances
+            <i class="fas fa-chart-pie text-success"></i> Attendances
         </a>
         <a href="{{ route('users.index') }}" class="list-group-item list-group-item-action
         @if(url()->current() == url('users'))
         active
         @endif">
-            <i class="fas fa-users"></i> Users
+            <i class="fas fa-users text-success"></i> Users
         </a>
 
         <a href="{{ route('students.index') }}" class="list-group-item list-group-item-action
             @if(Request::is('students*'))
             active
             @endif">
-            <i class="fas fa-user-tie"></i>
+            <i class="fas fa-user-tie text-success"></i>
             Students</a>
         <a href="{{ route('teachers.index') }}" class="list-group-item list-group-item-action
             @if(Request::is('teachers*'))
             active
             @endif">
-            <i class="fas fa-user-friends"></i>
+            <i class="fas fa-user-friends text-success"></i>
             Teachers</a>
 
         <a href="{{ route('classes.index') }}" class="list-group-item list-group-item-action
             @if(url()->current() == url('classes'))
             active
             @endif">
-            <i class="fas fa-door-open"></i>
+            <i class="fas fa-door-open text-success"></i>
             Classes</a>
 
         <a href="{{ route('subjects.index') }}" class="list-group-item list-group-item-action
             @if(url()->current() == url('subjects'))
             active
             @endif">
-            <i class="fas fa-book-reader"></i>
+            <i class="fas fa-book-reader text-success"></i>
             Subjects</a>
 
         <a href="{{ route('roles.index') }}" class="list-group-item list-group-item-action
             @if(url()->current() == url('roles'))
             active
             @endif">
-            <i class="fas fa-layer-group"></i>
+            <i class="fas fa-layer-group text-success"></i>
             Roles</a>
 
         <a href="#" class="list-group-item list-group-item-action" id="headingOne" data-toggle="collapse"
             data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-            <i class="fas fa-newspaper"></i>
+            <i class="fas fa-newspaper text-success"></i>
             Another <i class="fas fa-chevron-down ml-2"></i></a>
 
         <div id="collapseOne" class="collapse  text-center

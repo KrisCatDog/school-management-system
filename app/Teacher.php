@@ -6,8 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Teacher extends Model
 {
-    /** 
-     * Mass asignments
+    /**
+     * Mass assignment.
+     *
+     * @var array
      */
     protected $guarded = [];
 
@@ -42,7 +44,7 @@ class Teacher extends Model
     }
 
     /** 
-     * Teachers with user classes (m to m)
+     * Teachers with classes relation (m to m)
      */
     public function classes()
     {

@@ -6,8 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Attendance extends Model
 {
+    /**
+     * Mass assignment.
+     *
+     * @var array
+     */
     protected $guarded = [];
-
 
     public function getCreatedAtAttribute($value)
     {
@@ -23,6 +27,9 @@ class Attendance extends Model
         ][$value];
     }
 
+    /**
+     * Attendance with student relation (1 to m)
+     */
     public function student()
     {
         return $this->belongsTo(Student::class);

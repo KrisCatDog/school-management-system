@@ -37,16 +37,25 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * User with role relation (1 to 1)
+     */
     public function role()
     {
         return $this->belongsTo(Role::class);
     }
 
+    /**
+     * User with student relation (1 to 1)
+     */
     public function student()
     {
         return $this->hasOne(Student::class);
     }
 
+    /**
+     * User with teacher relation (1 to 1)
+     */
     public function teacher()
     {
         return $this->hasOne(Teacher::class);

@@ -137,6 +137,11 @@ class AttendanceController extends Controller
         //
     }
 
+    /**
+     * Show attendances according to class, subject, & month.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function showAttendance()
     {
         if (request('class_id') == null) {
@@ -171,6 +176,11 @@ class AttendanceController extends Controller
         return view('attendance.show', compact('students', 'class', 'subject', 'month'));
     }
 
+    /**
+     * Lists of months in year.
+     *
+     * @return collection
+     */
     private function monthsData()
     {
         return collect([

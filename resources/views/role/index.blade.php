@@ -21,7 +21,7 @@
             </thead>
             <tbody>
                 @php $index = 1 @endphp
-                @foreach ($roles as $role)
+                @forelse ($roles as $role)
                 <tr>
                     <th scope="row">{{ $index }}</th>
                     <td>{{ $role->name }}</td>
@@ -39,7 +39,11 @@
                     </td> --}}
                 </tr>
                 @php $index++ @endphp
-                @endforeach
+                @empty
+                <tr>
+                    <td style="width: 100%">No role yet!</td>
+                </tr>
+                @endforelse
             </tbody>
         </table>
     </div>

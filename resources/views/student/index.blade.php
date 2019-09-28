@@ -22,7 +22,7 @@
             </thead>
             <tbody>
                 @php $index = 1 @endphp
-                @foreach ($students as $student)
+                @forelse ($students as $student)
                 <tr>
                     <th scope="row">{{ $index }}</th>
                     <td>{{ $student->user->name }}</td>
@@ -41,7 +41,11 @@
                     </td>
                 </tr>
                 @php $index++ @endphp
-                @endforeach
+                @empty
+                <tr>
+                    <td style="width: 100%">No student yet!</td>
+                </tr>
+                @endforelse
             </tbody>
         </table>
         {{ $students->links() }}

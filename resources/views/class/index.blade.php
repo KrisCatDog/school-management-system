@@ -21,7 +21,7 @@
             </thead>
             <tbody>
                 @php $index = 1 @endphp
-                @foreach ($classes as $class)
+                @forelse ($classes as $class)
                 <tr>
                     <th scope="row">{{ $index }}</th>
                     <td>{{ $class->name }}</td>
@@ -39,7 +39,11 @@
                     </td>
                 </tr>
                 @php $index++ @endphp
-                @endforeach
+                @empty
+                <tr>
+                    <td style="width: 100%">No class yet!</td>
+                </tr>
+                @endforelse
             </tbody>
         </table>
     </div>

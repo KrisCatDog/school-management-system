@@ -21,7 +21,7 @@
             </thead>
             <tbody>
                 @php $index = 1 @endphp
-                @foreach ($subjects as $subject)
+                @forelse ($subjects as $subject)
                 <tr>
                     <th scope="row">{{ $index }}</th>
                     <td>{{ $subject->name }}</td>
@@ -39,7 +39,11 @@
                     </td>
                 </tr>
                 @php $index++ @endphp
-                @endforeach
+                @empty
+                <tr>
+                    <td style="width: 100%">No subject yet!</td>
+                </tr>
+                @endforelse
             </tbody>
         </table>
     </div>

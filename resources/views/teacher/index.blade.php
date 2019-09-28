@@ -22,7 +22,7 @@
             </thead>
             <tbody>
                 @php $index = 1 @endphp
-                @foreach ($teachers as $teacher)
+                @forelse ($teachers as $teacher)
                 <tr>
                     <th scope="row">{{ $index }}</th>
                     <td>{{ $teacher->user->name }}</td>
@@ -41,7 +41,11 @@
                     </td>
                 </tr>
                 @php $index++ @endphp
-                @endforeach
+                @empty
+                <tr>
+                    <td style="width: 100%">No teacher yet!</td>
+                </tr>
+                @endforelse
             </tbody>
         </table>
     </div>

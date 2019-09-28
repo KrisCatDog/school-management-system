@@ -7,7 +7,9 @@
 <div class="card">
     <div class="card-header bg-green-lime-reverse d-flex justify-content-between align-items-center">
         <span class="h5 mb-0"><i class="fas fa-user-tie mr-1"></i> Student List</span>
+        @if (Auth::user()->role_id == 1)
         <a href="{{ route('students.create') }}" class="btn btn-outline-success btn-lg">Create Student</a>
+        @endif
     </div>
 
     <div class="card-body">
@@ -17,7 +19,9 @@
                     <th scope="col">No</th>
                     <th scope="col">Name</th>
                     <th scope="col">Address</th>
+                    @if (Auth::user()->role_id == 1)
                     <th scope="col">Action</th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -27,6 +31,7 @@
                     <th scope="row">{{ $index }}</th>
                     <td>{{ $student->user->name }}</td>
                     <td>{{ $student->address }}</td>
+                    @if (Auth::user()->role_id == 1)
                     <td>
                         <a href="{{ route('students.show', ['student' => $student]) }}"
                             class="btn btn-outline-info btn-sm">Detail</a>
@@ -39,6 +44,7 @@
                             <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
                         </form>
                     </td>
+                    @endif
                 </tr>
                 @php $index++ @endphp
                 @empty

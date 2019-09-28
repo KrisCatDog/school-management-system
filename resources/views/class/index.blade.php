@@ -16,7 +16,9 @@
                 <tr>
                     <th scope="col">No</th>
                     <th scope="col" style="width: 40%">Name</th>
+                    @if (Auth::user()->role_id == 1)
                     <th scope="col">Action</th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -25,6 +27,7 @@
                 <tr>
                     <th scope="row">{{ $index }}</th>
                     <td>{{ $class->name }}</td>
+                    @if (Auth::user()->role_id == 1)
                     <td>
                         <a href="{{ route('classes.show', ['class' => $class]) }}"
                             class="btn btn-outline-info btn-sm">Detail</a>
@@ -37,6 +40,7 @@
                             <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
                         </form>
                     </td>
+                    @endif
                 </tr>
                 @php $index++ @endphp
                 @empty

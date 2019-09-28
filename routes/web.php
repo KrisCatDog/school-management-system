@@ -21,6 +21,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('attendances/show-attendance', 'AttendanceController@showAttendance')->name('attendances.show-attendance');
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/roles', 'RoleController@index')->name('roles.index');
+    Route::get('/feedbacks', 'FeedbackController@index')->name('feedbacks.index');
+    Route::post('/feedbacks', 'FeedbackController@store')->name('feedbacks.store');
 
     Route::resources([
         'users' => 'UserController',

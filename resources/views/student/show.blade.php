@@ -10,7 +10,7 @@
         <h3 class="card-title">{{ $student->user->name }}</h3>
         <h5 class="card-subtitle mb-2 text-muted">{{ $student->user->email }}</h5>
         <p class="card-text">{{ $student->address }}</p>
-        <h5 class="card-subtitle mb-2 text-muted">{{ $student->class->name }}</h5>
+        <h5 class="card-subtitle mb-2 text-muted">{{ $student->class->name ?? 'Unknown Class' }}</h5>
         <a href="{{ route('students.index') }}" class="card-link btn btn-outline-success">Back</a>
     </div>
 

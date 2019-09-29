@@ -49,6 +49,7 @@ class StudentController extends Controller
             'email' => 'required|email|unique:users,email',
             'password' => 'required|confirmed|min:6',
             'address' => 'required',
+            'class_id' => 'required',
         ]);
 
         $userData = [
@@ -63,6 +64,7 @@ class StudentController extends Controller
         $studentData = [
             'user_id' => $user->id,
             'address' => $validatedData['address'],
+            'class_id' => $validatedData['class_id'],
         ];
 
         Student::create($studentData);

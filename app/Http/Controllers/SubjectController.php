@@ -26,7 +26,9 @@ class SubjectController extends Controller
      */
     public function create()
     {
-        //
+        $subject = new Subject();
+
+        return view('subject.create', compact('subject'));
     }
 
     /**
@@ -37,7 +39,9 @@ class SubjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Subject::create($this->validateRequest($request));
+
+        return redirect(route('subjects.index'));
     }
 
     /**
@@ -59,7 +63,7 @@ class SubjectController extends Controller
      */
     public function edit(Subject $subject)
     {
-        //
+        return view('subject.edit', compact('subject'));
     }
 
     /**
@@ -71,7 +75,9 @@ class SubjectController extends Controller
      */
     public function update(Request $request, Subject $subject)
     {
-        //
+        $subject->update($this->validateRequest($request));
+
+        return redirect(route('subjects.index'));
     }
 
     /**
@@ -85,5 +91,12 @@ class SubjectController extends Controller
         $subject->delete();
 
         return back();
+    }
+
+    private function validateRequest($request)
+    {
+        return $request->validate([
+            'name' => 'required',
+        ]);
     }
 }

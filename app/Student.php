@@ -46,6 +46,6 @@ class Student extends Model
      */
     public function class()
     {
-        return $this->belongsTo(MyClass::class);
+        return $this->belongsTo(MyClass::class, 'class_id', 'student_id');
     }
 }

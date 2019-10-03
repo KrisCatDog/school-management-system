@@ -7,7 +7,7 @@
 <div class="card">
     <div class="card-header bg-green-lime-reverse d-flex justify-content-between align-items-center">
         <span class="h5 mb-0"> <i class="fas fa-door-open"></i> Class List</a></span>
-        {{-- <a href="{{ route('users.create') }}" class="btn btn-outline-light">Create User</a> --}}
+        <a href="{{ route('classes.create') }}" class="btn btn-outline-success">Create Class</a>
     </div>
 
     <div class="card-body">
@@ -34,7 +34,7 @@
                         <a href="{{ route('classes.edit', ['class' => $class]) }}"
                             class="btn btn-outline-success btn-sm">Edit</a>
                         <form action="{{ route('classes.destroy', ['class' => $class]) }}" method="post"
-                            class="inline custom-control-inline">
+                            class="d-inline">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>

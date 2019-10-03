@@ -26,7 +26,9 @@ class ClassController extends Controller
      */
     public function create()
     {
-        //
+        $class = new MyClass();
+
+        return view('class.create', compact('class'));
     }
 
     /**
@@ -37,7 +39,9 @@ class ClassController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        MyClass::create($this->validateRequest($request));
+
+        return redirect(route('classes.index'));
     }
 
     /**
@@ -46,9 +50,9 @@ class ClassController extends Controller
      * @param  \App\MyClass  $myClass
      * @return \Illuminate\Http\Response
      */
-    public function show(MyClass $myClass)
+    public function show(MyClass $class)
     {
-        //
+        return view('class.show', compact('class'));
     }
 
     /**
@@ -57,9 +61,9 @@ class ClassController extends Controller
      * @param  \App\MyClass  $myClass
      * @return \Illuminate\Http\Response
      */
-    public function edit(MyClass $myClass)
+    public function edit(MyClass $class)
     {
-        //
+        return view('class.edit', compact('class'));
     }
 
     /**
@@ -69,9 +73,11 @@ class ClassController extends Controller
      * @param  \App\MyClass  $myClass
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MyClass $myClass)
+    public function update(Request $request, MyClass $class)
     {
-        //
+        $class->update($this->validateRequest($request));
+
+        return redirect(route('classes.index'));
     }
 
     /**
@@ -80,8 +86,17 @@ class ClassController extends Controller
      * @param  \App\MyClass  $myClass
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MyClass $myClass)
+    public function destroy(MyClass $class)
     {
-        //
+        $class->delete();
+
+        return back();
+    }
+
+    private function validateRequest($request)
+    {
+        return $request->validate([
+            'name' => 'required',
+        ]);
     }
 }

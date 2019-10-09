@@ -5,10 +5,13 @@
 
 <h5 class="pb-4"><i class="fas fa-chart-pie shadow-sm"></i> <b> Attendances Data</b></h5>
 <div class="card">
-    <div class="card-header bg-green-lime d-flex justify-content-between align-items-center">
+    <div class="card-header bg-green d-flex justify-content-between align-items-center">
         <span class="h5 mb-0"><i class="fas fa-door-open"></i> <b> {{ $class->name }}</b>
         </span>
         <span class="h5 mb-0"><i class="fas fa-moon"></i> <b>{{ $month }}</b> </span>
+        <span class="h5 mb-0"><i class="fas fa-user-friends"></i>
+            <b>{{ $students->first()->attendances->where('subject_id', $subject->id)->first()->teacher->user->name ?? "Empty" }}</b>
+        </span>
         <span class="h5 mb-0"><i class="fas fa-book-reader"></i> <b>{{ $subject->name }}</b> </span>
     </div>
 

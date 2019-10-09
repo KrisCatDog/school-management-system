@@ -17,9 +17,10 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        $teachers = Teacher::with('user')->get();
+        $users = User::where('role_id', 3)->oldest('name')->get();
+        // $teachers = Teacher::with('user')->get();
 
-        return view('teacher.index', compact('teachers'));
+        return view('teacher.index', compact('users'));
     }
 
     /**
@@ -112,7 +113,6 @@ class TeacherController extends Controller
         $validatedData = $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . $teacher->user_id,
-            'password' => 'required|confirmed|min:6',
             'address' => 'required',
             'classes' => 'required',
             'subjects' => 'required',
@@ -121,7 +121,6 @@ class TeacherController extends Controller
         $userData = [
             'name' => $validatedData['name'],
             'email' =>  $validatedData['email'],
-            'password' => bcrypt($validatedData['password']),
             'role_id' => 3,
         ];
 

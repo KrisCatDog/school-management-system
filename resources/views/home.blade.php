@@ -25,7 +25,7 @@
 
 <section class="home-container">
     <div class="home-header-item flex-grow-2 d-flex align-items-center">
-        <span class="h1 mr-3"><i class="fas fa-user-friends"></i></span>
+        <span class="h1 mr-3"><i class="fas fa-book-reader"></i></span>
         <div>
             Total Subjects
             <div class="h2 counter" data-count="{{ $totalSubjects }}">0</div>

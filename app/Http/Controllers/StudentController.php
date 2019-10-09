@@ -18,9 +18,9 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = Student::paginate(50);
+        $users = User::where('role_id', 2)->oldest('name')->paginate(50);
 
-        return view('student.index', compact('students'));
+        return view('student.index', compact('users'));
     }
 
     /**
@@ -110,7 +110,6 @@ class StudentController extends Controller
         $validatedData = $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . $student->user_id,
-            'password' => 'required|confirmed|min:6',
             'address' => 'required',
             'class_id' => 'required',
         ]);
@@ -118,7 +117,6 @@ class StudentController extends Controller
         $userData = [
             'name' => $validatedData['name'],
             'email' =>  $validatedData['email'],
-            'password' => bcrypt($validatedData['password']),
             'role_id' => 2,
         ];
 

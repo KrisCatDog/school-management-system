@@ -6,6 +6,7 @@ use App\Attendance;
 use App\MyClass;
 use App\Student;
 use App\Subject;
+use App\Teacher;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -170,6 +171,8 @@ class AttendanceController extends Controller
         $class = MyClass::findOrFail(request('class_id'));
         $subject = Subject::findOrFail(request('subject_id'));
         $month = $this->monthsData()[request('month_id') - 1]['name'];
+
+        // dd($subject->teachers()->where('teachers.id', 1)->get());
 
         // if ($students->count() == 0 || $students->first()->attendances->where('subject_id', request()->subject_id)->count() == 0) {
         //     session()->flash('emptyError', 'Kelas Belum Memiliki Data Absen!');

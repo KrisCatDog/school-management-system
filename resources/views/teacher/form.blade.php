@@ -31,19 +31,19 @@
     </div>
 </div>
 
-<div class="form-group row">
+{{-- <div class="form-group row">
     <label for="password" class="col-md-10 offset-1">{{ __('Password') }}</label>
 
-    <div class="col-md-10 offset-1">
-        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
-            name="password" autocomplete="current-password">
+<div class="col-md-10 offset-1">
+    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password"
+        autocomplete="current-password">
 
-        @error('password')
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
-        @enderror
-    </div>
+    @error('password')
+    <span class="invalid-feedback" role="alert">
+        <strong>{{ $message }}</strong>
+    </span>
+    @enderror
+</div>
 </div>
 
 <div class="form-group row">
@@ -60,7 +60,7 @@
         </span>
         @enderror
     </div>
-</div>
+</div> --}}
 
 <div class="form-group row">
     <label for="address" class="col-md-10 offset-1">Address</label>

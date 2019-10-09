@@ -26,18 +26,18 @@
             </thead>
             <tbody>
                 @php $index = 1 @endphp
-                @forelse ($students as $student)
+                @forelse ($users as $user)
                 <tr>
                     <th scope="row">{{ $index }}</th>
-                    <td>{{ $student->user->name }}</td>
-                    <td>{{ $student->address }}</td>
+                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->student->address }}</td>
                     @if (Auth::user()->role_id == 1)
                     <td>
-                        <a href="{{ route('students.show', ['student' => $student]) }}"
+                        <a href="{{ route('students.show', ['student' => $user->student]) }}"
                             class="btn btn-outline-info btn-sm">Detail</a>
-                        <a href="{{ route('students.edit', ['student' => $student]) }}"
+                        <a href="{{ route('students.edit', ['student' => $user->student]) }}"
                             class="btn btn-outline-success btn-sm">Edit</a>
-                        <form action="{{ route('students.destroy', ['student' => $student]) }}" method="post"
+                        <form action="{{ route('students.destroy', ['student' => $user->student]) }}" method="post"
                             class="inline custom-control-inline">
                             @csrf
                             @method('DELETE')
@@ -54,7 +54,7 @@
                 @endforelse
             </tbody>
         </table>
-        {{ $students->links() }}
+        {{ $users->links() }}
     </div>
 </div>
 

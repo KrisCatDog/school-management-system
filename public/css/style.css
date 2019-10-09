@@ -178,6 +178,10 @@ h5 i {
   flex: 2;
 }
 
+.dropdown-item:focus {
+  background-color: #38c172;
+}
+
 @media (max-width: 768px) {
   .col-lg-12 {
     padding-left: 2rem;

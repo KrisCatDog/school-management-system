@@ -23,6 +23,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/roles', 'RoleController@index')->name('roles.index');
     Route::get('/feedbacks', 'FeedbackController@index')->name('feedbacks.index');
     Route::post('/feedbacks', 'FeedbackController@store')->name('feedbacks.store');
+    Route::get('/edit-profile', 'UserController@editProfile')->name('users.edit-profile');
 
     Route::resources([
         'users' => 'UserController',

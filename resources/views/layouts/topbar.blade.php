@@ -49,6 +49,11 @@
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right position-absolute" aria-labelledby="navbarDropdown">
+                    @if (auth()->user()->role_id != 1)
+                    <a class="dropdown-item" href="{{ route('users.edit-profile') }}">
+                        Edit Profile
+                    </a>
+                    @endif
                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
                         {{ __('Logout') }}

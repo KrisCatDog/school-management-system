@@ -108,8 +108,6 @@
     color: $orange;
 }
 
-
-
 .navbar-light {
     background-color: #fff;
     margin: 0;
@@ -149,6 +147,10 @@ h5 i {
 
 .flex-grow-2 {
     flex: 2;
+}
+
+.dropdown-item:focus {
+    background-color: $green;
 }
 
 @media (max-width: 768px) {

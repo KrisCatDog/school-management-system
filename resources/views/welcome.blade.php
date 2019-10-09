@@ -4,24 +4,37 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Laravel</title>
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
+    <title>School Management System</title>
 
     <!-- Styles -->
     <style>
         html,
         body {
-            background-color: #fff;
-            color: #636b6f;
-            font-family: 'Nunito', sans-serif;
+            background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
+            color: #555;
+            font-family: 'Quicksand', sans-serif;
             font-weight: 200;
             height: 100vh;
             margin: 0;
             display: flex;
             flex-direction: column;
+            animation: bgAnim 2s infinite;
+            background-size: 150% 150%;
+        }
+
+        @keyframes bgAnim {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         .full-height {
@@ -44,6 +57,11 @@
 
         .title {
             font-size: 77px;
+            font-family: 'Gloria Hallelujah', cursive;
+        }
+
+        .subtitle {
+            font-size: 45px;
         }
 
         .links>a {
@@ -62,10 +80,14 @@
             margin-bottom: 30px;
         }
 
-        footer {
-            text-align: center;
-            padding: 1rem;
-            font-weight: 600;
+        @media (max-width: 576px) {
+            .title {
+                font-size: 57px;
+            }
+
+            .subtitle {
+                font-size: 30px;
+            }
         }
     </style>
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
@@ -74,13 +96,16 @@
 <body>
     <div class="flex-center position-ref full-height">
         <div class="content">
-            <div class="title m-b-md">
+            <div class="title">
                 School Management System
+            </div>
+            <div class="subtitle m-b-md">
+                Beta Version
             </div>
 
             <div class="links">
                 @auth
-                <a href="{{ url('/home') }}" class="btn-gd-success">Home</a>
+                <a href="{{ url('/home') }}" class="btn-gd-teal">Home</a>
                 @else
                 <a href="{{ route('login') }}" class="btn-gd-info">Login</a>
                 @if (Route::has('register'))
@@ -90,10 +115,6 @@
             </div>
         </div>
     </div>
-
-    <footer>
-        &copy; 2019
-    </footer>
 </body>
 
 </html>

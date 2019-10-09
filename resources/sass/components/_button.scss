@@ -22,3 +22,7 @@
 .btn-gd-info {
     @include btn-gradient($blue);
 }
+
+.btn-gd-teal {
+    @include btn-gradient($teal);
+}

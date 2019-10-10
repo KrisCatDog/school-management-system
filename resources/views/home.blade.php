@@ -10,7 +10,7 @@
         <span class="h1 mr-3"><i class="fas fa-user-tie"></i></span>
         <div>
             Students Today
-            <div class="h2 counter" data-count="{{ $attendances->unique('student_id')->count() }}">0</div>
+            <div class="h2 counter" data-count="{{ $attendStudents->count() }}">0</div>
         </div>
     </div>
 
@@ -18,6 +18,24 @@
         <span class="h1 mr-3"><i class="fas fa-door-open"></i></span>
         <div>
             Classes Today
+            <div class="h2 counter" data-count="{{ $attendances->unique('class_id')->count() }}">0</div>
+        </div>
+    </div>
+</section>
+
+<section class="home-container">
+    <div class="home-header-item d-flex align-items-center">
+        <span class="h1 mr-3"><i class="fas fa-user-tie"></i></span>
+        <div>
+            Students Not Attend Today
+            <div class="h2 counter" data-count="{{ $sickStudents->count() + $absentStudents->count() }}">0</div>
+        </div>
+    </div>
+
+    <div class="home-header-item flex-grow-2 d-flex align-items-center">
+        <span class="h1 mr-3"><i class="fas fa-user-tie"></i></span>
+        <div>
+            Students With the Most <span class="text-danger">Absent</span>
             <div class="h2 counter" data-count="{{ $attendances->unique('class_id')->count() }}">0</div>
         </div>
     </div>
@@ -34,7 +52,7 @@
 </section>
 
 <section class="home-container">
-    <div class="home-header-item d-flex align-items-center">
+    <div class="home-header-item flex-grow-2 d-flex align-items-center">
         <span class="h1 mr-3"><i class="fas fa-user-tie"></i></span>
         <div>
             Total Students
@@ -42,7 +60,7 @@
         </div>
     </div>
 
-    <div class="home-header-item flex-grow-2 d-flex align-items-center">
+    <div class="home-header-item d-flex align-items-center">
         <span class="h1 mr-3"><i class="fas fa-user-friends"></i></span>
         <div>
             Total Teachers

@@ -68,7 +68,8 @@ class AttendanceController extends Controller
             return back();
         }
 
-        $students = Student::where('class_id', request()->class_id)->get();
+        $students = Student::with('user')->where('class_id', request()->class_id)->get()->sortBy('user.name');
+
         $class = MyClass::findOrFail(request('class_id'));
         $subject = Subject::findOrFail(request('subject_id'));
 
@@ -83,7 +84,6 @@ class AttendanceController extends Controller
      */
     public function store(Request $request)
     {
-
         for ($i = 0; $i < count($request->status); $i++) {
             Attendance::create([
                 'student_id' => $request->user_id[$i],

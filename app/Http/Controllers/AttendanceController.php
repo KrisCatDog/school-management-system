@@ -167,7 +167,7 @@ class AttendanceController extends Controller
             return back();
         }
 
-        $students = Student::with('attendances')->where('class_id', request('class_id'))->get();
+        $students = Student::with('attendances', 'user')->where('class_id', request('class_id'))->get()->sortBy('user.name');
         $class = MyClass::findOrFail(request('class_id'));
         $subject = Subject::findOrFail(request('subject_id'));
         $month = $this->monthsData()[request('month_id') - 1]['name'];

@@ -153,6 +153,17 @@ h5 i {
     background-color: $green;
 }
 
+.page-item {
+    &.active .page-link {
+        background-color: $green !important;
+        border-color: $green !important;
+    }
+}
+
+.page-link {
+    color: $green;
+}
+
 @media (max-width: 768px) {
     .col-lg-12 {
         padding-left: 2rem;

@@ -6,6 +6,7 @@ use App\MyClass;
 use App\Subject;
 use App\User;
 use Illuminate\Http\Request;
+use DataTables;
 
 class UserController extends Controller
 {
@@ -14,11 +15,18 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::oldest('name')->paginate(25);
+        // $users = User::oldest('name')->paginate(25);
 
-        return view('user.index', compact('users'));
+        if ($request->ajax()) {
+            $data = User::with('role')->oldest('name')->get();
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->make(true);
+        }
+
+        return view('user.index');
     }
 
     /**

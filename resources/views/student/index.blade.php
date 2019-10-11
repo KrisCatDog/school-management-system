@@ -13,7 +13,7 @@
     </div>
 
     <div class="card-body">
-        <table class="table table-hover table-striped table-borderless">
+        <table class="table table-hover table-striped table-borderless data-table">
             <thead>
                 <tr>
                     <th scope="col">No</th>
@@ -25,37 +25,54 @@
                 </tr>
             </thead>
             <tbody>
-                @php $index = 1 @endphp
+                {{-- @php $index = 1 @endphp
                 @forelse ($users as $user)
                 <tr>
                     <th scope="row">{{ $index }}</th>
-                    <td>{{ $user->name }}</td>
-                    <td>{{ $user->student->address }}</td>
-                    @if (Auth::user()->role_id == 1)
-                    <td>
-                        <a href="{{ route('students.show', ['student' => $user->student]) }}"
-                            class="btn btn-outline-info btn-sm">Detail</a>
-                        <a href="{{ route('students.edit', ['student' => $user->student]) }}"
-                            class="btn btn-outline-success btn-sm">Edit</a>
-                        <form action="{{ route('students.destroy', ['student' => $user->student]) }}" method="post"
-                            class="inline custom-control-inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
-                        </form>
-                    </td>
-                    @endif
+                <td>{{ $user->name }}</td>
+                <td>{{ $user->student->address }}</td>
+                @if (Auth::user()->role_id == 1)
+                <td>
+                    <a href="{{ route('students.show', ['student' => $user->student]) }}"
+                        class="btn btn-outline-info btn-sm">Detail</a>
+                    <a href="{{ route('students.edit', ['student' => $user->student]) }}"
+                        class="btn btn-outline-success btn-sm">Edit</a>
+                    <form action="{{ route('students.destroy', ['student' => $user->student]) }}" method="post"
+                        class="inline custom-control-inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
+                    </form>
+                </td>
+                @endif
                 </tr>
                 @php $index++ @endphp
                 @empty
                 <tr>
                     <td style="width: 100%">No student yet!</td>
                 </tr>
-                @endforelse
+                @endforelse --}}
             </tbody>
         </table>
-        {{ $users->links() }}
+        {{-- {{ $users->links() }} --}}
     </div>
 </div>
 
+<script type="text/javascript">
+    $(function () {
+      
+      var table = $('.data-table').DataTable({
+          processing: true,
+          serverSide: true,
+          ajax: "{{ route('students.index') }}",
+          columns: [    
+              {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+              {data: 'name', name: 'name'},
+              {data: 'student.address', name: 'student.address'},
+              {data: 'action', name: 'action', orderable: false, searchable: false},
+          ]
+      });
+      
+    });
+</script>
 @endsection

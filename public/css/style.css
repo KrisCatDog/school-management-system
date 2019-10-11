@@ -192,6 +192,15 @@ h5 i {
   background-color: #38c172;
 }
 
+.page-item.active .page-link {
+  background-color: #38c172 !important;
+  border-color: #38c172 !important;
+}
+
+.page-link {
+  color: #38c172;
+}
+
 @media (max-width: 768px) {
   .col-lg-12 {
     padding-left: 2rem;

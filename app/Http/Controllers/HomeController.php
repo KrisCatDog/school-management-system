@@ -7,6 +7,7 @@ use App\Student;
 use App\Subject;
 use App\Teacher;
 use Illuminate\Http\Request;
+use DataTables;
 
 class HomeController extends Controller
 {
@@ -35,7 +36,7 @@ class HomeController extends Controller
         $totalTeachers = Teacher::all()->count();
         $totalSubjects = Subject::all()->count();
 
-        return view('home', compact(
+        return view('dashboard.home', compact(
             'attendances',
             'totalStudents',
             'totalTeachers',
@@ -44,6 +45,21 @@ class HomeController extends Controller
             'absentStudents',
             'attendStudents'
         ));
+    }
+
+    public function studentsNotAttend(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = $this->todayAttendance()->with('student', 'student.user', 'student.class')->where('status', 2)->orWhere('status', 3)->get();
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->editColumn('status', function ($value) {
+                    return $value->status;
+                })
+                ->make(true);
+        }
+
+        return view('dashboard.students-not-attend');
     }
 
     public function todayAttendance()

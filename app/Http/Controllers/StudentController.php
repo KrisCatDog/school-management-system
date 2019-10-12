@@ -17,8 +17,8 @@ class StudentController extends Controller
      */
     public function index(Request $request)
     {
-
         if ($request->ajax()) {
+
             $data = Student::with('user', 'class')->get()->sortBy('user.name');
 
             return Datatables::of($data)

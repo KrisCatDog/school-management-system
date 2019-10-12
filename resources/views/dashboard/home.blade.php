@@ -23,14 +23,17 @@
     </div>
 </section>
 
+
 <section class="home-container">
-    <div class="home-header-item d-flex align-items-center">
-        <span class="h1 mr-3"><i class="fas fa-user-tie"></i></span>
-        <div>
-            Students Not Attend Today
-            <div class="h2 counter" data-count="{{ $sickStudents->count() + $absentStudents->count() }}">0</div>
+    <a href="{{ route('home.notattend') }}" class="card-link">
+        <div class="home-header-item d-flex align-items-center">
+            <span class="h1 mr-3"><i class="fas fa-user-tie"></i></span>
+            <div>
+                Students Not Attend Today
+                <div class="h2 counter" data-count="{{ $sickStudents->count() + $absentStudents->count() }}">0</div>
+            </div>
         </div>
-    </div>
+    </a>
 
     <div class="home-header-item flex-grow-2 d-flex align-items-center">
         <span class="h1 mr-3"><i class="fas fa-user-tie"></i></span>

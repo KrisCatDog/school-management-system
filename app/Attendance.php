@@ -20,6 +20,13 @@ class Attendance extends Model
 
     public function getStatusAttribute($value)
     {
+        if (request()->is('home*')) {
+            return [
+                2 => 'Sick',
+                3 => 'Absent',
+            ][$value];
+        }
+
         return [
             1 => '<i class="fas fa-check text-success"></i>',
             2 => '<b class="text-orange">S</b>',

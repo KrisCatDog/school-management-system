@@ -47,7 +47,7 @@
                     </div>
                 </div>
                 <footer class="text-center p-3">
-                    <span>&copy; {{ date("Y") }}</span>
+                    <span>&copy; {{ date("Y") }} School Management System. All rights reserved.</span>
                 </footer>
             </div>
         </main>

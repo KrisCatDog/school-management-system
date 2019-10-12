@@ -35,13 +35,16 @@
         </div>
     </a>
 
-    <div class="home-header-item flex-grow-2 d-flex align-items-center">
-        <span class="h1 mr-3"><i class="fas fa-user-tie"></i></span>
-        <div>
-            Students With the Most <span class="text-danger">Absent</span>
-            <div class="h2 counter" data-count="{{ $attendances->unique('class_id')->count() }}">0</div>
+    <a href="{{ route('home.mostabsent') }}" class="card-link">
+        <div class="home-header-item flex-grow-2 d-flex align-items-center">
+            <span class="h1 mr-3"><i class="fas fa-user-tie"></i></span>
+            <div>
+                Students With the Most <span class="text-danger">Absent</span>
+                <div class="h2 counter"
+                    data-count="{{ $attendances->where('status', 'Absent')->unique('student_id')->count() }}">0</div>
+            </div>
         </div>
-    </div>
+    </a>
 </section>
 
 <section class="home-container">

@@ -22,6 +22,7 @@ class Attendance extends Model
     {
         if (request()->is('home*')) {
             return [
+                1 => 'Attend',
                 2 => 'Sick',
                 3 => 'Absent',
             ][$value];

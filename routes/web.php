@@ -21,6 +21,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('attendances/show-attendance', 'AttendanceController@showAttendance')->name('attendances.show-attendance');
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/home/students-not-attend', 'HomeController@studentsNotAttend')->name('home.notattend');
+    Route::get('/home/students-most-absent', 'HomeController@studentsMostAbsent')->name('home.mostabsent');
     Route::get('/roles', 'RoleController@index')->name('roles.index');
     Route::get('/feedbacks', 'FeedbackController@index')->name('feedbacks.index');
     Route::post('/feedbacks', 'FeedbackController@store')->name('feedbacks.store');

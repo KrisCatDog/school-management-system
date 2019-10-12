@@ -74,7 +74,6 @@
               @endif
           ]
       });
-      
     });
 </script>
 @endsection

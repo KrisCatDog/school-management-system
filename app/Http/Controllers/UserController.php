@@ -83,13 +83,24 @@ class UserController extends Controller
             $validatedData = $request->validate([
                 'name' => 'required',
                 'email' => 'required|email|unique:users,email,' . $user->id,
-                'password' => 'sometimes|min:6|confirmed',
+                'password' => 'sometimes|confirmed',
                 'address' => 'required',
                 'class_id' => 'required',
+                'photo' => 'sometimes|image|mimes:jpeg,png,jpg|max:2048',
+                'phone_number' => 'required|numeric',
+                'instagram_username' => 'required',
             ]);
 
             if ($request->password) {
+                $request->validate([
+                    'password' => 'min:6',
+                ]);
+
                 $password = ['password' => bcrypt($validatedData['password'])];
+            }
+
+            if ($request->photo) {
+                $photo = ['photo' => $request->photo->store('uploads/students', 'public')];
             }
 
             $userData = [
@@ -106,9 +117,11 @@ class UserController extends Controller
                 'user_id' => $user->id,
                 'address' => $validatedData['address'],
                 'class_id' => $validatedData['class_id'],
+                'phone_number' => $validatedData['phone_number'],
+                'instagram_username' => $validatedData['instagram_username'],
             ];
 
-            $user->student->update($studentData);
+            $user->student->update(array_merge($studentData, $photo ?? []));
         }
 
         if ($user->role_id == 3) {

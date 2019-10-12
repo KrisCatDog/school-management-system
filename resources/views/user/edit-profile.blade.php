@@ -10,7 +10,7 @@
     </div>
 
     <div class="card-body">
-        <form action="{{ route('users.update', ['user' => $user]) }}" method="POST">
+        <form action="{{ route('users.update', ['user' => $user]) }}" method="POST" enctype="multipart/form-data">
             @method('PATCH')
             @csrf
             @if (auth()->user()->role_id == 2)

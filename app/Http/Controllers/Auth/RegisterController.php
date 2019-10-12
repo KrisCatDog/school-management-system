@@ -73,8 +73,7 @@ class RegisterController extends Controller
 
         Student::create([
             'user_id' => $user->id,
-            'address' => 'Unknown',
-            'class_id' => 0,
+            'photo' => 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
         ]);
 
         return $user;

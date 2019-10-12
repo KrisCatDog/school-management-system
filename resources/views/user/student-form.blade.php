@@ -99,3 +99,56 @@
         @enderror
     </div>
 </div>
+
+<div class="form-group row">
+    <label for="photo" class="col-md-10 offset-1">Photo <i class="text-success">(Optional)</i></label>
+
+    <div class="col-md-10 offset-1 mb-1">
+        <img src="{{ $user->student->photo }}" width="300">
+    </div>
+
+    <div class="col-md-10 offset-1">
+        <input id="photo" type="file" class="form-control @error('photo') is-invalid @enderror" name="photo"
+            value="{{ old('photo') }}" autocomplete="photo" autofocus>
+
+        @error('photo')
+        <span class=" invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+        @enderror
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="phone_number" class="col-md-10 offset-1">Phone Number</label>
+
+    <div class="col-md-10 offset-1">
+
+        <input id="phone_number" type="text" class="form-control @error('phone_number') is-invalid @enderror"
+            name="phone_number" value="{{ $user->student->phone_number ?? old('phone_number') }}"
+            autocomplete="phone_number" autofocus>
+
+        @error('phone_number')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+        @enderror
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="instagram_username" class="col-md-10 offset-1">Instagram Username</label>
+
+    <div class="col-md-10 offset-1">
+        <input id="instagram_username" type="text"
+            class="form-control @error('instagram_username') is-invalid @enderror" name="instagram_username"
+            value="{{ $user->student->instagram_username ?? old('instagram_username') }}"
+            autocomplete="instagram_username" autofocus>
+
+        @error('instagram_username')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+        @enderror
+    </div>
+</div>

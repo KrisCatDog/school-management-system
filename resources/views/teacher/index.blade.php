@@ -8,16 +8,16 @@
     <div class="card-header bg-green-lime-reverse d-flex justify-content-between align-items-center">
         <span class="h5 mb-0"><i class="fas fa-user-friends"></i> Teacher List</span>
         @if (Auth::user()->role_id == 1)
-        <a href="{{ route('teachers.create') }}" class="btn btn-outline-success btn-lg">Create Teacher</a>
+        <a href="{{ route('teachers.create') }}" class="btn btn-outline-success">Create Teacher</a>
         @endif
     </div>
 
     <div class="card-body">
-        <table class="table table-hover table-borderless table-striped">
+        <table class="table table-hover table-borderless table-striped data-table w-100">
             <thead>
                 <tr>
                     <th scope="col">No</th>
-                    <th scope="col" style="width: 20%">Name</th>
+                    <th scope="col">Name</th>
                     <th scope="col">Address</th>
                     @if (Auth::user()->role_id == 1)
                     <th scope="col">Action</th>
@@ -25,36 +25,27 @@
                 </tr>
             </thead>
             <tbody>
-                @php $index = 1 @endphp
-                @forelse ($users as $user)
-                <tr>
-                    <th scope="row">{{ $index }}</th>
-                    <td>{{ $user->name }}</td>
-                    <td>{{ $user->teacher->address }}</td>
-                    @if (Auth::user()->role_id == 1)
-                    <td>
-                        <a href="{{ route('teachers.show', ['teacher' => $user->teacher]) }}"
-                            class="btn btn-outline-info btn-sm">Detail</a>
-                        <a href="{{ route('teachers.edit', ['teacher' => $user->teacher]) }}"
-                            class="btn btn-outline-success btn-sm">Edit</a>
-                        <form action="{{ route('teachers.destroy', ['teacher' => $user->teacher]) }}" method="post"
-                            class="inline custom-control-inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
-                        </form>
-                    </td>
-                    @endif
-                </tr>
-                @php $index++ @endphp
-                @empty
-                <tr>
-                    <td style="width: 100%">No teacher yet!</td>
-                </tr>
-                @endforelse
             </tbody>
         </table>
     </div>
 </div>
 
+<script type="text/javascript">
+    $(function () {
+      
+      var table = $('.data-table').DataTable({
+          processing: true,
+          serverSide: true,
+          ajax: "{{ route('teachers.index') }}",
+          columns: [    
+              {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+              {data: 'user.name', name: 'user.name'},
+              {data: 'address', name: 'address'},
+              @if (Auth::user()->role_id == 1)
+              {data: 'action', name: 'action', orderable: false, searchable: false},
+              @endif
+          ]
+      });
+    });
+</script>
 @endsection

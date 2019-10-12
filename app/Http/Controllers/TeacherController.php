@@ -7,6 +7,7 @@ use App\Subject;
 use App\Teacher;
 use App\User;
 use Illuminate\Http\Request;
+use DataTables;
 
 class TeacherController extends Controller
 {
@@ -15,12 +16,25 @@ class TeacherController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::where('role_id', 3)->oldest('name')->get();
-        // $teachers = Teacher::with('user')->get();
+        if ($request->ajax()) {
+            $data = Teacher::with('user')->get()->sortBy('user.name');
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function ($data) {
+                    $detail = '<a href="' . route("teachers.show", ["teacher" => $data]) . '" class="btn btn-outline-info btn-sm d-inline mr-1">Detail</a>';
+                    $edit = '<a href="' . route("teachers.edit", ["teacher" => $data]) . '" class="btn btn-outline-success btn-sm d-inline">Edit</a>';
+                    $delete = '<form action="' . route("teachers.destroy", ["teacher" => $data]) . '" method="post" class="d-inline"> ' . csrf_field() . method_field("DELETE") . ' <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button> </form>';
+                    return $detail . $edit . $delete;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
 
-        return view('teacher.index', compact('users'));
+        // $users = User::where('role_id', 3)->oldest('name')->get();
+
+        return view('teacher.index');
     }
 
     /**

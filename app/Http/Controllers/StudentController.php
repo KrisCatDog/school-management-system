@@ -17,9 +17,9 @@ class StudentController extends Controller
      */
     public function index(Request $request)
     {
-
         if ($request->ajax()) {
-            $data = User::with('student')->where('role_id', 2)->oldest('name')->get();
+            // $data = User::with('student')->where('role_id', 2)->oldest('name')->get();
+            $data = Student::with('user', 'class')->get()->sortBy('user.name');
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($data) {

@@ -17,8 +17,6 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        // $users = User::oldest('name')->paginate(25);
-
         if ($request->ajax()) {
             $data = User::with('role')->oldest('name')->get();
             return Datatables::of($data)
@@ -85,7 +83,7 @@ class UserController extends Controller
             $validatedData = $request->validate([
                 'name' => 'required',
                 'email' => 'required|email|unique:users,email,' . $user->id,
-                'password' => 'sometimes|confirmed',
+                'password' => 'sometimes|min:6|confirmed',
                 'address' => 'required',
                 'class_id' => 'required',
             ]);

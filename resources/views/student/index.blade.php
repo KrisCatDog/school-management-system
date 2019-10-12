@@ -18,7 +18,7 @@
                 <tr>
                     <th scope="col">No</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Address</th>
+                    <th scope="col">Class</th>
                     @if (Auth::user()->role_id == 1)
                     <th scope="col">Action</th>
                     @endif
@@ -67,9 +67,11 @@
           ajax: "{{ route('students.index') }}",
           columns: [    
               {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-              {data: 'name', name: 'name'},
-              {data: 'student.address', name: 'student.address'},
+              {data: 'user.name', name: 'user.name'},
+              {data: 'class.name', name: 'class.name'},
+              @if (Auth::user()->role_id == 1)
               {data: 'action', name: 'action', orderable: false, searchable: false},
+              @endif
           ]
       });
       

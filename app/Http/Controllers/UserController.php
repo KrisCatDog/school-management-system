@@ -176,7 +176,7 @@ class UserController extends Controller
     public function editProfile()
     {
         $user = auth()->user();
-        $classes = MyClass::all();
+        $classes = MyClass::oldest('name')->get();
         $subjects = Subject::all();
 
         return view('user.edit-profile', compact('user', 'classes', 'subjects'));

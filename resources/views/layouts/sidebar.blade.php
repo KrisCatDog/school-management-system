@@ -10,7 +10,7 @@
     </div>
     <div class="list-group" id="list-group">
         <a href="{{ url('home') }}" class="list-group-item list-group-item-action 
-                                @if(url()->current() == url('home'))
+                                @if(request()->is('home*'))
                                     active
                                 @endif">
             <i class="fas fa-home text-success"></i> Dashboard

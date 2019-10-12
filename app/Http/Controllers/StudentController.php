@@ -24,9 +24,9 @@ class StudentController extends Controller
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($data) {
-                    $detail = '<a href="' . route("students.show", ["student" => $data->student]) . '" class="btn btn-outline-info btn-sm d-inline mr-1">Detail</a>';
-                    $edit = '<a href="' . route("students.show", ["student" => $data->student]) . '" class="btn btn-outline-success btn-sm d-inline">Edit</a>';
-                    $delete = '<form action="' . route("students.destroy", ["student" => $data->student]) . '" method="post" class="d-inline"> ' . csrf_field() . method_field("DELETE") . ' <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button> </form>';
+                    $detail = '<a href="' . route("students.show", ["student" => $data]) . '" class="btn btn-outline-info btn-sm d-inline mr-1">Detail</a>';
+                    $edit = '<a href="' . route("students.edit", ["student" => $data]) . '" class="btn btn-outline-success btn-sm d-inline">Edit</a>';
+                    $delete = '<form action="' . route("students.destroy", ["student" => $data]) . '" method="post" class="d-inline"> ' . csrf_field() . method_field("DELETE") . ' <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button> </form>';
                     return $detail . $edit . $delete;
                 })
                 ->rawColumns(['action'])
@@ -46,6 +46,8 @@ class StudentController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Student::class);
+
         $student = new Student();
         $classes = MyClass::all()->sortBy('name');
 
@@ -60,6 +62,8 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', Student::class);
+
         $validatedData = $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
@@ -109,6 +113,8 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
+        $this->authorize('update', $student);
+
         $classes = MyClass::all()->sortBy('name');
 
         return view('student.edit', compact('student', 'classes'));
@@ -123,6 +129,8 @@ class StudentController extends Controller
      */
     public function update(Request $request, Student $student)
     {
+        $this->authorize('update', $student);
+
         $validatedData = $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . $student->user_id,
@@ -159,6 +167,8 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
+        $this->authorize('delete', $student);
+
         $student->delete();
 
         return back();

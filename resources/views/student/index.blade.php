@@ -7,13 +7,14 @@
 <div class="card">
     <div class="card-header bg-green-lime-reverse d-flex justify-content-between align-items-center">
         <span class="h5 mb-0"><i class="fas fa-user-tie mr-1"></i> Student List</span>
-        @if (Auth::user()->role_id == 1)
-        <a href="{{ route('students.create') }}" class="btn btn-outline-success btn-lg">Create Student</a>
-        @endif
+        @can('create', App\Student::class)
+        <a href="{{ route('students.create') }}" class="btn btn-outline-success">Create Student</a>
+        @endcan
+
     </div>
 
     <div class="card-body">
-        <table class="table table-hover table-striped table-borderless data-table">
+        <table class="table table-hover table-striped table-borderless data-table w-100">
             <thead>
                 <tr>
                     <th scope="col">No</th>

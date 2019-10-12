@@ -1,2 +1,2 @@
-# school-management-system-beta
+# school-management-system
 School Management System Beta Version

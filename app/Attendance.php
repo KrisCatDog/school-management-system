@@ -15,12 +15,16 @@ class Attendance extends Model
 
     public function getCreatedAtAttribute($value)
     {
+        // if (request()->is('attendances/edit-attendance*')) {
+        //     return date('l, j F Y h:i:s A', strtotime($value));
+        // }
+
         return date('m-d', strtotime($value));
     }
 
     public function getStatusAttribute($value)
     {
-        if (request()->is('home*')) {
+        if (request()->is('home*') || request()->is('attendances/edit-attendance*')) {
             return [
                 1 => 'Attend',
                 2 => 'Sick',

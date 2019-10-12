@@ -46,13 +46,13 @@ class AttendanceController extends Controller
     public function create()
     {
         if (request('class_id') == null) {
-            session()->flash('twoTimesError', 'Pilih Kelas Terlebih Dulu!');
+            session()->flash('create', 'Pilih Kelas Terlebih Dulu!');
 
             return back();
         }
 
         if (request('subject_id') == null) {
-            session()->flash('twoTimesError', 'Pilih Mapel Terlebih Dulu!');
+            session()->flash('create', 'Pilih Mapel Terlebih Dulu!');
 
             return back();
         }
@@ -63,7 +63,7 @@ class AttendanceController extends Controller
             ->get();
 
         if ($validatedData->count() > 0) {
-            session()->flash('twoTimesError', 'Tidak Bisa Melakukan Absen 2 Kali!');
+            session()->flash('create', 'Tidak Bisa Melakukan Absen 2 Kali!');
 
             return back();
         }
@@ -150,19 +150,19 @@ class AttendanceController extends Controller
     public function showAttendance()
     {
         if (request('class_id') == null) {
-            session()->flash('emptyError', 'Pilih Kelas Terlebih Dulu!');
+            session()->flash('show', 'Pilih Kelas Terlebih Dulu!');
 
             return back();
         }
 
         if (request('subject_id') == null) {
-            session()->flash('emptyError', 'Pilih Mapel Terlebih Dulu!');
+            session()->flash('show', 'Pilih Mapel Terlebih Dulu!');
 
             return back();
         }
 
         if (request('month_id') == null) {
-            session()->flash('emptyError', 'Pilih Bulan Terlebih Dulu!');
+            session()->flash('show', 'Pilih Bulan Terlebih Dulu!');
 
             return back();
         }
@@ -181,6 +181,64 @@ class AttendanceController extends Controller
         // }
 
         return view('attendance.show', compact('students', 'class', 'subject', 'month'));
+    }
+
+    public function editAttendance()
+    {
+        if (request('class_id') == null) {
+            session()->flash('edit', 'Pilih Kelas Terlebih Dulu!');
+
+            return back();
+        }
+
+        if (request('subject_id') == null) {
+            session()->flash('edit', 'Pilih Mapel Terlebih Dulu!');
+
+            return back();
+        }
+
+        if (request('month_id') == null) {
+            session()->flash('edit', 'Pilih Bulan Terlebih Dulu!');
+
+            return back();
+        }
+
+        if (request('date') == null) {
+            session()->flash('edit', 'Pilih Bulan Terlebih Dulu!');
+
+            return back();
+        }
+
+        $students = Student::with('attendances', 'user')->where('class_id', request('class_id'))->get()->sortBy('user.name');
+        $class = MyClass::findOrFail(request('class_id'));
+        $subject = Subject::findOrFail(request('subject_id'));
+        $month = $this->monthsData()[request('month_id') - 1]['name'];
+        $m = (request('month_id') < 10) ? 0 . request('month_id') : request('month_id');
+        $d = (request('date') < 10) ? 0 . request('date') : request('date');
+
+        if ($students->first()->attendances->where('created_at', $m . "-" . $d)->where(
+            'subject_id',
+            request('subject_id')
+        )->first() == null) {
+            session()->flash('edit', 'Kelas Tidak Memiliki Data Absen!');
+
+            return back();
+        }
+
+        return view('attendance.edit', compact('students', 'class', 'subject', 'm', 'd', 'month'));
+    }
+
+    public function updateAttendance(Request $request)
+    {
+        for ($i = 0; $i < count($request->status); $i++) {
+            $attendance = Attendance::find($request->id[$i]);
+
+            $attendance->update([
+                'status' => $request->status[$i],
+            ]);
+        }
+
+        return redirect(route('attendances.index'));
     }
 
     /**

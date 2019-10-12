@@ -19,6 +19,8 @@ Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
     Route::get('attendances/show-attendance', 'AttendanceController@showAttendance')->name('attendances.show-attendance');
+    Route::get('attendances/edit-attendance', 'AttendanceController@editAttendance')->name('attendances.edit-attendance');
+    Route::patch('attendances/edit-attendance', 'AttendanceController@updateAttendance')->name('attendances.update-attendance');
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/home/students-not-attend', 'HomeController@studentsNotAttend')->name('home.notattend');
     Route::get('/home/students-most-absent', 'HomeController@studentsMostAbsent')->name('home.mostabsent');

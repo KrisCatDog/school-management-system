@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\MyClass;
 use Illuminate\Http\Request;
+use DataTables;
 
 class ClassController extends Controller
 {
@@ -12,11 +13,24 @@ class ClassController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $classes = MyClass::all()->sortBy('name');
+        if ($request->ajax()) {
+            $data = MyClass::all()->sortBy('name');
 
-        return view('class.index', compact('classes'));
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function ($data) {
+                    $detail = '<a href="' . route("classes.show", ["class" => $data]) . '" class="btn btn-outline-info btn-sm d-inline mr-1">Detail</a>';
+                    $edit = '<a href="' . route("classes.edit", ["class" => $data]) . '" class="btn btn-outline-success btn-sm d-inline">Edit</a>';
+                    $delete = '<form action="' . route("classes.destroy", ["class" => $data]) . '" method="post" class="d-inline"> ' . csrf_field() . method_field("DELETE") . ' <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button> </form>';
+                    return $detail . $edit . $delete;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+
+        return view('class.index');
     }
 
     /**

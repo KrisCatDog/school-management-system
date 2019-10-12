@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Subject;
 use Illuminate\Http\Request;
+use DataTables;
 
 class SubjectController extends Controller
 {
@@ -12,11 +13,24 @@ class SubjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $subjects = Subject::oldest('name')->get();
+        if ($request->ajax()) {
+            $data = Subject::oldest('name')->get();
 
-        return view('subject.index', compact('subjects'));
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function ($data) {
+                    $detail = '<a href="' . route("subjects.show", ["subject" => $data]) . '" class="btn btn-outline-info btn-sm d-inline mr-1">Detail</a>';
+                    $edit = '<a href="' . route("subjects.edit", ["subject" => $data]) . '" class="btn btn-outline-success btn-sm d-inline">Edit</a>';
+                    $delete = '<form action="' . route("subjects.destroy", ["subject" => $data]) . '" method="post" class="d-inline"> ' . csrf_field() . method_field("DELETE") . ' <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button> </form>';
+                    return $detail . $edit . $delete;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+
+        return view('subject.index');
     }
 
     /**

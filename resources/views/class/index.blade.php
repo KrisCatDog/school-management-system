@@ -11,7 +11,7 @@
     </div>
 
     <div class="card-body">
-        <table class="table table-hover table-borderless table-striped">
+        <table class="table table-hover table-borderless table-striped data-table w-100">
             <thead>
                 <tr>
                     <th scope="col">No</th>
@@ -22,35 +22,25 @@
                 </tr>
             </thead>
             <tbody>
-                @php $index = 1 @endphp
-                @forelse ($classes as $class)
-                <tr>
-                    <th scope="row">{{ $index }}</th>
-                    <td>{{ $class->name }}</td>
-                    @if (Auth::user()->role_id == 1)
-                    <td>
-                        <a href="{{ route('classes.show', ['class' => $class]) }}"
-                            class="btn btn-outline-info btn-sm">Detail</a>
-                        <a href="{{ route('classes.edit', ['class' => $class]) }}"
-                            class="btn btn-outline-success btn-sm">Edit</a>
-                        <form action="{{ route('classes.destroy', ['class' => $class]) }}" method="post"
-                            class="d-inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
-                        </form>
-                    </td>
-                    @endif
-                </tr>
-                @php $index++ @endphp
-                @empty
-                <tr>
-                    <td style="width: 100%">No class yet!</td>
-                </tr>
-                @endforelse
             </tbody>
         </table>
     </div>
 </div>
 
+<script type="text/javascript">
+    $(function () {
+      var table = $('.data-table').DataTable({
+          processing: true,
+          serverSide: true,
+          ajax: "{{ route('classes.index') }}",
+          columns: [    
+              {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+              {data: 'name', name: 'name'},
+              @if (Auth::user()->role_id == 1)
+              {data: 'action', name: 'action', orderable: false, searchable: false},
+              @endif
+          ]
+      });
+    });
+</script>
 @endsection

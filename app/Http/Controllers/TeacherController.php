@@ -32,8 +32,6 @@ class TeacherController extends Controller
                 ->make(true);
         }
 
-        // $users = User::where('role_id', 3)->oldest('name')->get();
-
         return view('teacher.index');
     }
 
@@ -44,6 +42,8 @@ class TeacherController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Teacher::class);
+
         $teacher = new Teacher();
         $classes = MyClass::oldest('name')->get();
         $subjects = Subject::oldest('name')->get();
@@ -59,6 +59,8 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', Teacher::class);
+
         $validatedData = $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
@@ -109,6 +111,8 @@ class TeacherController extends Controller
      */
     public function edit(Teacher $teacher)
     {
+        $this->authorize('update', $teacher);
+
         $classes = MyClass::oldest('name')->get();
         $subjects = Subject::oldest('name')->get();
 
@@ -124,6 +128,8 @@ class TeacherController extends Controller
      */
     public function update(Request $request, Teacher $teacher)
     {
+        $this->authorize('update', $teacher);
+
         $validatedData = $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . $teacher->user_id,
@@ -163,6 +169,8 @@ class TeacherController extends Controller
      */
     public function destroy(Teacher $teacher)
     {
+        $this->authorize('delete', $teacher);
+
         $teacher->delete();
 
         return back();

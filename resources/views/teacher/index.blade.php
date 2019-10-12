@@ -7,9 +7,9 @@
 <div class="card">
     <div class="card-header bg-green-lime-reverse d-flex justify-content-between align-items-center">
         <span class="h5 mb-0"><i class="fas fa-user-friends"></i> Teacher List</span>
-        @if (Auth::user()->role_id == 1)
+        @can('create', App\Teacher::class)
         <a href="{{ route('teachers.create') }}" class="btn btn-outline-success">Create Teacher</a>
-        @endif
+        @endcan
     </div>
 
     <div class="card-body">

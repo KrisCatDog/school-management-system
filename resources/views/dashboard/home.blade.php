@@ -36,7 +36,7 @@
     </a>
 
     <a href="{{ route('home.mostabsent') }}" class="card-link flex-grow-2">
-        <div class="home-header-item d-flex align-items-center">
+        <div class="home-header-item d-flex  align-items-center">
             <span class="h1 mr-3"><i class="fas fa-user-tie"></i></span>
             <div>
                 Students With the Most <span class="text-danger">Absent</span>

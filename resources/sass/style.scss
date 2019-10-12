@@ -164,9 +164,18 @@ h5 i {
     color: $green;
 }
 
+.card-link:hover .home-header-item {
+    transition: .3s all;
+    background: $green-2;
+}
+
 @media (max-width: 768px) {
     .col-lg-12 {
         padding-left: 2rem;
+    }
+
+    .card-link+.card-link {
+        margin: 0;
     }
 }
 

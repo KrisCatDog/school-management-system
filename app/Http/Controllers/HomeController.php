@@ -29,6 +29,7 @@ class HomeController extends Controller
     public function index()
     {
         $attendances = $this->todayAttendance()->get();
+        $mostAbsentStudents = Attendance::with('student', 'student.user', 'student.class')->where('status', 3)->get()->unique('student_id')->count();
         $attendStudents = $this->todayAttendance()->where('status', 1)->get()->unique('student_id');
         $sickStudents = $this->todayAttendance()->where('status', 2)->get()->unique('student_id');
         $absentStudents = $this->todayAttendance()->where('status', 3)->get()->unique('student_id');
@@ -38,6 +39,7 @@ class HomeController extends Controller
 
         return view('dashboard.home', compact(
             'attendances',
+            'mostAbsentStudents',
             'totalStudents',
             'totalTeachers',
             'totalSubjects',
@@ -50,7 +52,11 @@ class HomeController extends Controller
     public function studentsNotAttend(Request $request)
     {
         if ($request->ajax()) {
-            $data = $this->todayAttendance()->with('student', 'student.user', 'student.class')->where('status', 2)->orWhere('status', 3)->get()->unique('student_id')->sortBy('student.user.name');
+            $sick = $this->todayAttendance()->with('student', 'student.user', 'student.class')->where('status', 2)->get()->unique('student_id')->sortBy('student.user.name');
+            $absent = $this->todayAttendance()->with('student', 'student.user', 'student.class')->where('status', 3)->get()->unique('student_id')->sortBy('student.user.name');
+
+            $data = $sick->merge($absent);
+
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->editColumn('status', function ($value) {

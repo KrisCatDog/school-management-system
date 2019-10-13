@@ -6,8 +6,6 @@ use App\Attendance;
 use App\MyClass;
 use App\Student;
 use App\Subject;
-use App\Teacher;
-use App\User;
 use Illuminate\Http\Request;
 
 class AttendanceController extends Controller

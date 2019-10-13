@@ -51,10 +51,6 @@ class Student extends Model
 
     public function getPhotoAttribute($value)
     {
-        if (request()->is('storage*')) {
-            return asset('storage/' . $value);
-        } else {
-            return $value;
-        }
+        return asset('storage/' . $value);
     }
 }

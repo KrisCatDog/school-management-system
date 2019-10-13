@@ -44,8 +44,13 @@
             @endif
             @else
             <li class="nav-item dropdown">
+
                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false" v-pre>
+                    @if (Auth::user()->role_id == 2)
+                    <img src="{{ Auth::user()->load('student')->student->photo }}" class="rounded-circle mr-2"
+                        width="35">
+                    @endif
                     <b>{{ Auth::user()->name }} <span class="caret"></span></b>
                 </a>
 

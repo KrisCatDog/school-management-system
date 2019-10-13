@@ -12,7 +12,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
-    {{-- <script src="https://kit.fontawesome.com/818523a0db.js"></script> --}}
+    <script src="https://kit.fontawesome.com/818523a0db.js"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -56,8 +56,6 @@
             </div>
         </main>
     </div>
-
-
     <!-- APP <End> -->
 
     <script>

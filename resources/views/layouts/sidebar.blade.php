@@ -25,6 +25,13 @@
             <i class="fas fa-chart-pie text-success"></i> Attendances
         </a>
 
+        <a href=" {{ route('scores.index') }}" class="list-group-item list-group-item-action
+        @if(Request::is('scores*'))
+            active
+        @endif">
+            <i class="fas fa-chart-pie text-success"></i> Scores
+        </a>
+
         @endif
 
         @if (Auth::user()->role_id == 1)

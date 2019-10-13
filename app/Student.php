@@ -49,6 +49,11 @@ class Student extends Model
         return $this->belongsTo(MyClass::class);
     }
 
+    public function scores()
+    {
+        return $this->hasMany(Score::class);
+    }
+
     public function getPhotoAttribute($value)
     {
         return asset('storage/' . $value);

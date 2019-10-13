@@ -21,6 +21,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('attendances/show-attendance', 'AttendanceController@showAttendance')->name('attendances.show-attendance');
     Route::get('attendances/edit-attendance', 'AttendanceController@editAttendance')->name('attendances.edit-attendance');
     Route::patch('attendances/edit-attendance', 'AttendanceController@updateAttendance')->name('attendances.update-attendance');
+    Route::get('scores/show-score', 'ScoreController@showScore')->name('scores.show-score');
+    Route::get('scores/edit-score', 'ScoreController@editScore')->name('scores.edit-score');
+    Route::patch('scores/edit-score', 'ScoreController@updateScore')->name('scores.update-score');
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/home/students-not-attend', 'HomeController@studentsNotAttend')->name('home.notattend');
     Route::get('/home/students-most-absent', 'HomeController@studentsMostAbsent')->name('home.mostabsent');
@@ -36,5 +39,6 @@ Route::middleware(['auth'])->group(function () {
         'attendances' => 'AttendanceController',
         'classes' => 'ClassController',
         'subjects' => 'SubjectController',
+        'scores' => 'ScoreController',
     ]);
 });

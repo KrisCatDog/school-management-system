@@ -170,14 +170,6 @@ class AttendanceController extends Controller
         $subject = Subject::findOrFail(request('subject_id'));
         $month = $this->monthsData()[request('month_id') - 1]['name'];
 
-        // dd($subject->teachers()->where('teachers.id', 1)->get());
-
-        // if ($students->count() == 0 || $students->first()->attendances->where('subject_id', request()->subject_id)->count() == 0) {
-        //     session()->flash('emptyError', 'Kelas Belum Memiliki Data Absen!');
-
-        //     return back();
-        // }
-
         return view('attendance.show', compact('students', 'class', 'subject', 'month'));
     }
 

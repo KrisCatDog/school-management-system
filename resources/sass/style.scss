@@ -169,6 +169,25 @@ h5 i {
     background: $green-2;
 }
 
+.form-control-2 {
+    padding: 1.4rem;
+    border: 0;
+}
+
+.font-cursive {
+    font-family: $font-family-cursive;
+    color: #555;
+}
+
+.btn-login {
+    padding: .9rem 1.4rem;
+    font-size: 1rem;
+}
+
+.font-weight-bold {
+    color: #444;
+}
+
 @media (max-width: 768px) {
     .col-lg-12 {
         padding-left: 2rem;

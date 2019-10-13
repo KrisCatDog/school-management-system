@@ -1,3 +1,4 @@
+@auth
 <nav class="navbar navbar-expand-md navbar-light text-center">
     <div class="container">
         {{-- <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}"> --}}
@@ -68,3 +69,4 @@
         </ul>
     </div>
 </nav>
+@endauth

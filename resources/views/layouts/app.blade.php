@@ -12,11 +12,11 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="https://kit.fontawesome.com/818523a0db.js"></script>
+    {{-- <script src="https://kit.fontawesome.com/818523a0db.js"></script> --}}
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -41,15 +41,18 @@
             @include('layouts.topbar')
             <div class="container-fluid">
                 <div class="row py-4 px-3">
-                    @if (Auth::user())
+                    @auth
                     <div class="col-lg-12 mt-3">
-                        @endif
+                        @endauth
                         @yield('content')
                     </div>
                 </div>
+
+                @auth
                 <footer class="text-center p-3">
                     <span>&copy; {{ date("Y") }} School Management System. All rights reserved.</span>
                 </footer>
+                @endauth
             </div>
         </main>
     </div>

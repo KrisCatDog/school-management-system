@@ -7,7 +7,9 @@
 <div class="card">
     <div class="card-header bg-green-lime-reverse d-flex justify-content-between align-items-center">
         <span class="h5 mb-0"><i class="fas fa-book-reader"></i> Subject List</span>
+        @can('create', App\Subject::class)
         <a href="{{ route('subjects.create') }}" class="btn btn-outline-success">Create Subject</a>
+        @endcan
     </div>
 
     <div class="card-body">
@@ -16,9 +18,9 @@
                 <tr>
                     <th scope="col">No</th>
                     <th scope="col">Name</th>
-                    @if (Auth::user()->role_id == 1)
+                    @can('create', App\Subject::class)
                     <th scope="col">Action</th>
-                    @endif
+                    @endcan
                 </tr>
             </thead>
             <tbody>
@@ -36,9 +38,9 @@
           columns: [    
               {data: 'DT_RowIndex', name: 'DT_RowIndex'},
               {data: 'name', name: 'name'},
-              @if (Auth::user()->role_id == 1)
+              @can('create', App\Subject::class)
               {data: 'action', name: 'action', orderable: false, searchable: false},
-              @endif
+              @endcan
           ]
       });
     });

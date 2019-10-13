@@ -29,7 +29,7 @@
         @if(Request::is('scores*'))
             active
         @endif">
-            <i class="fas fa-chart-pie text-success"></i> Scores
+            <i class="fas fa-chart-pie text-success"></i> Student Scores
         </a>
 
         @endif

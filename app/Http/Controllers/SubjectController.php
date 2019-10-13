@@ -40,6 +40,8 @@ class SubjectController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Subject::class);
+
         $subject = new Subject();
 
         return view('subject.create', compact('subject'));
@@ -53,6 +55,8 @@ class SubjectController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', Subject::class);
+
         Subject::create($this->validateRequest($request));
 
         return redirect(route('subjects.index'));
@@ -77,6 +81,8 @@ class SubjectController extends Controller
      */
     public function edit(Subject $subject)
     {
+        $this->authorize('update', Subject::class);
+
         return view('subject.edit', compact('subject'));
     }
 
@@ -89,6 +95,8 @@ class SubjectController extends Controller
      */
     public function update(Request $request, Subject $subject)
     {
+        $this->authorize('update', Subject::class);
+
         $subject->update($this->validateRequest($request));
 
         return redirect(route('subjects.index'));
@@ -102,6 +110,8 @@ class SubjectController extends Controller
      */
     public function destroy(Subject $subject)
     {
+        $this->authorize('delete', Subject::class);
+
         $subject->delete();
 
         return back();

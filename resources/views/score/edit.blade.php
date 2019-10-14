@@ -20,9 +20,7 @@
                 <tr>
                     <th scope="col">No</th>
                     <th scope="col">Name</th>
-                    <th scope="col" style="width: 15%">UH</th>
-                    <th scope="col" style="width: 15%">UTS</th>
-                    <th scope="col" style="width: 15%">UAS</th>
+                    <th scope="col" style="width: 15%">{{ request('score_type') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,29 +30,21 @@
                     @csrf
                     @php $index = 1 @endphp
                     @foreach ($students as $student)
-                    {{ $errors->first() }}
                     <tr>
                         <th scope="row">{{ $index }}</th>
                         <td>{{ $student->user->name }}</td>
-                        {{-- @error('daily_exams.'. ($index-1)) is-invalid @enderror --}}
-                        <td><input type="text" name="daily_exams[]" class="form-control w-75"
-                                value="{{ $student->scores->where('semester', request('semester'))->where('subject_id', request('subject_id'))->first()->daily_exams }}">
-                        </td>
-                        <td><input type="text" name="midterm_exams[]" class="form-control w-75"
-                                value="{{ $student->scores->where('semester', request('semester'))->where('subject_id', request('subject_id'))->first()->midterm_exams }}">
-                        </td>
-                        <td><input type="text" name="final_exams[]" class="form-control w-75"
-                                value="{{ $student->scores->where('semester', request('semester'))->where('subject_id', request('subject_id'))->first()->final_exams }}">
+                        <td><input type="text" name="points[]" class="form-control w-50"
+                                value="{{ $student->scores->where('semester', request('semester'))->where('subject_id', request('subject_id'))->where('score_type', request('score_type'))->first()->point  }}">
                         </td>
                         <input type="hidden" name="id[]"
-                            value="{{ $student->scores->where('semester', request('semester'))->where('subject_id', request('subject_id'))->first()->id }}">
+                            value="{{ $student->scores->where('semester', request('semester'))->where('subject_id', request('subject_id'))->where('score_type', request('score_type'))->first()->id }}">
                     </tr>
                     @php $index++ @endphp
                     @endforeach
             </tbody>
         </table>
         <div class="d-flex justify-content-around">
-            <a href="{{ route('attendances.index') }}" class="btn btn-gd-success">Back</a>
+            <a href="{{ route('scores.index') }}" class="btn btn-gd-success">Back</a>
             <button type="submit" class="btn btn-outline-success">Submit</button>
         </div>
         </form>

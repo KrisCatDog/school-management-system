@@ -50,4 +50,9 @@ class Teacher extends Model
     {
         return $this->belongsToMany(MyClass::class, 'class_teacher', 'teacher_id', 'class_id');
     }
+
+    public function scores()
+    {
+        return $this->hasMany(Score::class);
+    }
 }

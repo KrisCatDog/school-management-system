@@ -21,14 +21,14 @@ class ScoreController extends Controller
             $classes = MyClass::oldest('name')->get();
             $subjects = Subject::oldest('name')->get();
 
-            return view('score.index', compact('classes', 'subjects', 'months'));
+            return view('score.index', compact('classes', 'subjects'));
         }
 
         $classes = auth()->user()->teacher->classes()->oldest('name')->get();
         $subjects = auth()->user()->teacher->subjects()->get();
-
-
-        return view('score.index', compact('classes', 'subjects'));
+        $types = auth()->user()->teacher->scores()->get();
+        // dd($types);
+        return view('score.index', compact('classes', 'subjects', 'types'));
     }
 
     /**
@@ -43,12 +43,6 @@ class ScoreController extends Controller
         $class = MyClass::findOrFail(request('class_id'));
         $subject = Subject::findOrFail(request('subject_id'));
 
-        if (Score::where('subject_id', request('subject_id'))->where('class_id', request('class_id'))->where('semester', request('semester'))->get()->count() > 0) {
-            session()->flash('create', 'Kelas Telah Memiliki Data Nilai!');
-
-            return back();
-        }
-
         return view('score.create', compact('students', 'class', 'subject'));
     }
 
@@ -61,20 +55,19 @@ class ScoreController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'daily_exams.*' => 'nullable|numeric',
-            'midterm_exams.*' => 'nullable|numeric',
-            'full_exams.*' => 'nullable|numeric',
+            // 'score_type' => 'required|unique:scores,teacher_id' . auth()->user()->teacher->id,
+            'points.*' => 'nullable|numeric',
         ]);
 
         for ($i = 0; $i < count($request->student_id); $i++) {
             Score::create([
                 'student_id' => $request->student_id[$i],
                 'subject_id' => $request->subject_id,
-                'daily_exams' => $request->daily_exams[$i],
-                'midterm_exams' => $request->midterm_exams[$i],
-                'final_exams' => $request->final_exams[$i],
+                'score_type' => strtoupper($request->score_type),
+                'point' => $request->points[$i],
                 'semester' => $request->semester,
                 'class_id' => $request->class_id,
+                'teacher_id' => auth()->user()->teacher->id,
             ]);
         }
 
@@ -128,7 +121,7 @@ class ScoreController extends Controller
 
     public function showScore()
     {
-        $students = Student::with('attendances', 'user')->where('class_id', request('class_id'))->get()->sortBy('user.name');
+        $students = Student::with('scores', 'user')->where('class_id', request('class_id'))->get()->sortBy('user.name');
         $class = MyClass::findOrFail(request('class_id'));
         $subject = Subject::findOrFail(request('subject_id'));
 
@@ -143,9 +136,17 @@ class ScoreController extends Controller
 
     public function editScore()
     {
-        $students = Student::with('attendances', 'user')->where('class_id', request('class_id'))->get()->sortBy('user.name');
+        $students = Student::with('scores', 'user')->where('class_id', request('class_id'))->get()->sortBy('user.name');
         $class = MyClass::findOrFail(request('class_id'));
         $subject = Subject::findOrFail(request('subject_id'));
+
+        foreach ($students as $student) {
+            if ($student->scores->where('score_type', request('score_type'))->where('subject_id', request('subject_id'))->count() == 0) {
+                session()->flash('edit', 'Kelas Tidak Memiliki Data Nilai!');
+
+                return back();
+            }
+        }
 
         return view('score.edit', compact('students', 'class', 'subject'));
     }
@@ -153,18 +154,14 @@ class ScoreController extends Controller
     public function updateScore(Request $request)
     {
         $request->validate([
-            'daily_exams.*' => 'nullable|numeric',
-            'midterm_exams.*' => 'nullable|numeric',
-            'full_exams.*' => 'nullable|numeric',
+            'points.*' => 'nullable|numeric',
         ]);
 
         for ($i = 0; $i < count($request->id); $i++) {
             $score = Score::find($request->id[$i]);
 
             $score->update([
-                'daily_exams' => $request->daily_exams[$i],
-                'midterm_exams' => $request->midterm_exams[$i],
-                'final_exams' => $request->final_exams[$i],
+                'point' => $request->points[$i],
             ]);
         }
 

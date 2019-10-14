@@ -15,31 +15,34 @@
     </div>
 
     <div class="card-body">
-        <table class="table table-hover table-borderless table-striped w-100">
-            <thead>
-                <tr>
-                    <th scope="col">No</th>
-                    <th scope="col">Name</th>
-                    <th scope="col" style="width: 15%">UH</th>
-                    <th scope="col" style="width: 15%">UTS</th>
-                    <th scope="col" style="width: 15%">UAS</th>
-                </tr>
-            </thead>
-            <tbody>
-
-                <form action="{{ route('scores.store') }}" method="post">
+        <form action="{{ route('scores.store') }}" method="post">
+            <div class="d-flex align-items-center mb-2">
+                <label class="m-0 mr-2">Score Type : </label>
+                <input type="text" name="score_type" class="form-control w-25">
+                <span class="font-italic text-success ml-2">Example : UH, UTS, UAS</span>
+            </div>
+            @error('score_type')
+            <span class="text-danger" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+            <table class="table table-hover table-borderless table-striped w-100">
+                <thead>
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">POINT</th>
+                    </tr>
+                </thead>
+                <tbody>
                     @csrf
                     @php $index = 1 @endphp
                     @foreach ($students as $student)
-                    {{ $errors->first() }}
                     <tr>
                         <th scope="row">{{ $index }}</th>
                         <td>{{ $student->user->name }}</td>
-                        {{-- @error('daily_exams.'. ($index-1)) is-invalid @enderror --}}
-                        <td><input type="text" name="daily_exams[]" class="form-control w-75">
-                        </td>
-                        <td><input type="text" name="midterm_exams[]" class="form-control w-75"></td>
-                        <td><input type="text" name="final_exams[]" class="form-control w-75"></td>
+                        <td><input type="text" name="points[]"
+                                class="form-control w-25 @error('points.'. ($index-1)) is-invalid @enderror "></td>
                         <input type="hidden" name="student_id[]" value="{{ $student->id }}">
                         <input type="hidden" name="subject_id" value="{{ request()->subject_id }}">
                         <input type="hidden" name="class_id" value="{{ request()->class_id }}">
@@ -47,12 +50,12 @@
                     </tr>
                     @php $index++ @endphp
                     @endforeach
-            </tbody>
-        </table>
-        <div class="d-flex justify-content-around">
-            <a href="{{ route('attendances.index') }}" class="btn btn-gd-success">Back</a>
-            <button type="submit" class="btn btn-outline-success">Submit</button>
-        </div>
+                </tbody>
+            </table>
+            <div class="d-flex justify-content-around">
+                <a href="{{ route('scores.index') }}" class="btn btn-gd-success">Back</a>
+                <button type="submit" class="btn btn-outline-success">Submit</button>
+            </div>
         </form>
     </div>
 </div>

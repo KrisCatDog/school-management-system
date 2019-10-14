@@ -119,6 +119,12 @@
                 <option value="1">1</option>
                 <option value="2">2</option>
             </select>
+            <select name="score_type" id="score_type" class="form-control-lg">
+                <option disabled selected>Select Type</option>
+                @foreach ($types->unique('score_type') as $type)
+                <option value="{{ $type->score_type }}">{{ $type->score_type }}</option>
+                @endforeach
+            </select>
             <button class="btn btn-gd-success btn-lg ml-2" type="submit">Edit</button>
         </form>
     </div>

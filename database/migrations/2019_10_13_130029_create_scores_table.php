@@ -16,11 +16,11 @@ class CreateScoresTable extends Migration
         Schema::create('scores', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('student_id');
-            $table->unsignedBigInteger('class_id');
+            $table->unsignedBigInteger('teacher_id');
             $table->unsignedBigInteger('subject_id');
-            $table->integer('daily_exams')->nullable();
-            $table->integer('midterm_exams')->nullable();
-            $table->integer('final_exams')->nullable();
+            $table->unsignedBigInteger('class_id');
+            $table->string('score_type');
+            $table->integer('point');
             $table->unsignedInteger('semester');
             $table->timestamps();
         });

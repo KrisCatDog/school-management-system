@@ -21,29 +21,31 @@
                     <tr>
                         <th scope="col">No</th>
                         <th scope="col">Name</th>
-                        <th scope="col">UH</th>
-                        <th scope="col">UTS</th>
-                        <th scope="col">UAS</th>
+                        @foreach ($students->first()->scores->where('subject_id',
+                        request('subject_id'))->unique('score_type') as $score)
+                        <th scope="col">{{ $score->score_type }}</th>
+                        @endforeach
                     </tr>
                 </thead>
                 <tbody>
-
                     @php $index = 1; $date = 1; @endphp
                     @foreach ($students as $student)
                     <tr>
                         <th scope="row">{{ $index }}</th>
                         <td>{{ $student->user->name }}</td>
-                        <td>
-                            {{ $student->scores->where('semester', request('semester'))->where('subject_id', request('subject_id'))->first()->daily_exams ?? '.' }}
+                        {{-- @for ($i = 0; $i < $student->scores->where('subject_id',
+                            request('subject_id'))->unique('score_type')->count(); $i++)
+                            <td>
+                                {{ $student->scores->where('semester', request('semester'))->where('subject_id', request('subject_id'))->where('student_id', $student->id)[2] ?? '.' }}
                         </td>
+                        @endfor --}}
+                        @foreach ($student->scores->where('subject_id',
+                        request('subject_id'))->unique('score_type') as $score)
                         <td>
-                            {{ $student->scores->where('semester', request('semester'))->where('subject_id', request('subject_id'))->first()->midterm_exams ?? '.' }}
+                            {{ $score->point ?? '.' }}
                         </td>
-                        <td>
-                            {{ $student->scores->where('semester', request('semester'))->where('subject_id', request('subject_id'))->first()->final_exams ?? '.' }}
-                        </td>
+                        @endforeach
                     </tr>
-
                     @php $index++ @endphp
                     @endforeach
                     <tr>

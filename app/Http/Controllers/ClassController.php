@@ -40,6 +40,8 @@ class ClassController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', MyClass::class);
+
         $class = new MyClass();
 
         return view('class.create', compact('class'));
@@ -53,6 +55,8 @@ class ClassController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', MyClass::class);
+
         MyClass::create($this->validateRequest($request));
 
         return redirect(route('classes.index'));
@@ -77,6 +81,8 @@ class ClassController extends Controller
      */
     public function edit(MyClass $class)
     {
+        $this->authorize('update', $class);
+
         return view('class.edit', compact('class'));
     }
 
@@ -89,6 +95,8 @@ class ClassController extends Controller
      */
     public function update(Request $request, MyClass $class)
     {
+        $this->authorize('update', $class);
+
         $class->update($this->validateRequest($request));
 
         return redirect(route('classes.index'));
@@ -102,6 +110,8 @@ class ClassController extends Controller
      */
     public function destroy(MyClass $class)
     {
+        $this->authorize('delete', $class);
+
         $class->delete();
 
         return back();

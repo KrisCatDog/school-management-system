@@ -10,6 +10,10 @@ use Illuminate\Http\Request;
 
 class ScoreController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('teacher');
+    }
     /**
      * Display a listing of the resource.
      *

@@ -27,6 +27,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/home/students-not-attend', 'HomeController@studentsNotAttend')->name('home.notattend');
     Route::get('/home/students-most-absent', 'HomeController@studentsMostAbsent')->name('home.mostabsent');
+    Route::get('/home/students-highest-scores', 'HomeController@studentsHighestScores')->name('home.highestscores');
+    Route::get('/home/students-lowest-scores', 'HomeController@studentsLowestScores')->name('home.lowestscores');
     Route::get('/roles', 'RoleController@index')->name('roles.index');
     Route::get('/feedbacks', 'FeedbackController@index')->name('feedbacks.index');
     Route::post('/feedbacks', 'FeedbackController@store')->name('feedbacks.store');

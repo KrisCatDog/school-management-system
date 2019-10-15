@@ -33,12 +33,6 @@
                     <tr>
                         <th scope="row">{{ $index }}</th>
                         <td>{{ $student->user->name }}</td>
-                        {{-- @for ($i = 0; $i < $student->scores->where('subject_id',
-                            request('subject_id'))->unique('score_type')->count(); $i++)
-                            <td>
-                                {{ $student->scores->where('semester', request('semester'))->where('subject_id', request('subject_id'))->where('student_id', $student->id)[2] ?? '.' }}
-                        </td>
-                        @endfor --}}
                         @foreach ($student->scores->where('subject_id',
                         request('subject_id'))->unique('score_type') as $score)
                         <td>

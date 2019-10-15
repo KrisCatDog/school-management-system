@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Attendance;
+use App\Score;
 use App\Student;
 use App\Subject;
 use App\Teacher;
@@ -36,6 +37,10 @@ class HomeController extends Controller
         $totalStudents = Student::all()->count();
         $totalTeachers = Teacher::all()->count();
         $totalSubjects = Subject::all()->count();
+        $highestScoresStudents = Score::where('point', '>=', 75)->get()->unique('student_id')->count();
+        $lowestScoresStudents = Score::where('point', '<', 75)->get()->unique('student_id')->count();
+
+        // dd($highestScoresStudents);
 
         return view('dashboard.home', compact(
             'attendances',
@@ -45,7 +50,9 @@ class HomeController extends Controller
             'totalSubjects',
             'sickStudents',
             'absentStudents',
-            'attendStudents'
+            'attendStudents',
+            'highestScoresStudents',
+            'lowestScoresStudents'
         ));
     }
 
@@ -93,5 +100,19 @@ class HomeController extends Controller
         }
 
         return view('dashboard.students-most-absent');
+    }
+
+    public function studentsHighestScores()
+    {
+        $scores = Score::with('student', 'student.user', 'student.class')->where('point', '>=', 75)->get()->sortBy('student.user.name');
+
+        return view('dashboard.students-highest-scores', compact('scores'));
+    }
+
+    public function studentsLowestScores()
+    {
+        $scores = Score::with('student', 'student.user', 'student.class')->where('point', '<', 75)->get()->sortBy('student.user.name');
+
+        return view('dashboard.students-lowest-scores', compact('scores'));
     }
 }

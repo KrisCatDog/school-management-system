@@ -20,14 +20,15 @@ class ScoreController extends Controller
         if (auth()->user()->role_id == 1) {
             $classes = MyClass::oldest('name')->get();
             $subjects = Subject::oldest('name')->get();
+            $types = Score::all();
 
-            return view('score.index', compact('classes', 'subjects'));
+            return view('score.index', compact('classes', 'subjects', 'types'));
         }
 
         $classes = auth()->user()->teacher->classes()->oldest('name')->get();
         $subjects = auth()->user()->teacher->subjects()->get();
         $types = auth()->user()->teacher->scores()->get();
-        // dd($types);
+
         return view('score.index', compact('classes', 'subjects', 'types'));
     }
 

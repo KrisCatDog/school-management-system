@@ -23,7 +23,6 @@
     </div>
 </section>
 
-
 <section class="home-container">
     <a href="{{ route('home.notattend') }}" class="card-link">
         <div class="home-header-item d-flex align-items-center">
@@ -39,7 +38,7 @@
         <div class="home-header-item d-flex  align-items-center">
             <span class="h1 mr-3"><i class="fas fa-user-tie"></i></span>
             <div>
-                Students With the Most <span class="text-danger">Absent</span>
+                Students with the Most <span class="text-danger">Absent</span>
                 <div class="h2 counter" data-count="{{ $mostAbsentStudents }}">0</div>
             </div>
         </div>
@@ -54,6 +53,28 @@
             <div class="h2 counter" data-count="{{ $totalSubjects }}">0</div>
         </div>
     </div>
+</section>
+
+<section class="home-container">
+    <a href="{{ route('home.highestscores') }}" class="card-link">
+        <div class="home-header-item d-flex align-items-center">
+            <span class="h1 mr-3"><i class="fas fa-user-tie"></i></span>
+            <div>
+                Students with <span class="text-success">Highest Scores</span>
+                <div class="h2 counter" data-count="{{ $highestScoresStudents }}">0</div>
+            </div>
+        </div>
+    </a>
+
+    <a href="{{ route('home.lowestscores') }}" class="card-link flex-grow-2">
+        <div class="home-header-item d-flex align-items-center">
+            <span class="h1 mr-3"><i class="fas fa-door-open"></i></span>
+            <div>
+                Students with <span class="text-danger">Lowest Scores</span>
+                <div class="h2 counter" data-count="{{ $lowestScoresStudents }}">0</div>
+            </div>
+        </div>
+    </a>
 </section>
 
 <section class="home-container">

@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 
 class AttendanceController extends Controller
 {
+
     public function __construct()
     {
         $this->middleware('teacher');

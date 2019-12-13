@@ -23,7 +23,7 @@ class FeedbackController extends Controller
 
         Feedback::create(array_merge(
             $validatedData,
-            $userId,
+            $userId
         ));
 
         session()->flash('success', 'Terima Kasih Telah Memberi Saran & Kritik nya! 

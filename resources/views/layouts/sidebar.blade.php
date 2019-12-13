@@ -1,4 +1,4 @@
-@if (Auth::user())
+@auth
 <aside class="sidebar">
     <div class="sidebar-header text-center">
         <a class="navbar-brand" href="{{ url('/') }}">
@@ -9,14 +9,23 @@
         <hr class="m-0 mb-4">
     </div>
     <div class="list-group" id="list-group">
+
+        @if (Auth::user()->role_id == 2)
         <a href="{{ url('home') }}" class="list-group-item list-group-item-action 
-                                @if(request()->is('home*'))
-                                    active
-                                @endif">
-            <i class="fas fa-home text-success"></i> Dashboard
+        @if(request()->is('home*'))
+            active
+        @endif">
+            <i class="fas fa-home text-success"></i> Profile
         </a>
+        @endif
 
         @if (Auth::user()->role_id == 3 || Auth::user()->role_id == 1)
+        <a href="{{ url('home') }}" class="list-group-item list-group-item-action 
+        @if(request()->is('home*'))
+            active
+        @endif">
+            <i class="fas fa-home text-success"></i> Dashboard
+        </a>
 
         <a href=" {{ route('attendances.index') }}" class="list-group-item list-group-item-action
         @if(Request::is('attendances*'))
@@ -113,7 +122,6 @@
             <i class="fas fa-newspaper"></i>
             Menu</a>
     </div> --}}
-
     </div>
 </aside>
-@endif
+@endauth
